@@ -10,9 +10,13 @@ class Index extends Common
         ]);
     }
 
+    //用户登录
     public function login()
     {
 
+        return view('login',[
+
+        ]);
 
     }
 
