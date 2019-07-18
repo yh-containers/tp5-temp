@@ -17,6 +17,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/assets/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/assets/layui-v.2.5.4/css/layui.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,9 +78,13 @@
             <div class="user-panel">
 
             </div>
-
+            <!--高亮选中-->
+            {php}
+                $current_index = "{block name="current_index"}{/block}";
+                $current_index = empty($current_index)?[]:explode(',', $current_index);
+            {/php}
             <!-- /.search form -->
-           {:widget('Components/menu',['current_index'=>['test','test/index','test/index-1']])}
+           {:widget('Components/menu',['current_index'=>$current_index])}
         </section>
         <!-- /.sidebar -->
     </aside>
@@ -122,13 +127,14 @@
 
 <!-- jQuery 3 -->
 <script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+<script src="/assets/layui-v.2.5.4/layui.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="/assets/bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
 <script src="/assets/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/assets/dist/js/demo.js"></script>
+<script src="/assets/admin/js/common.js"></script>
 </body>
 </html>

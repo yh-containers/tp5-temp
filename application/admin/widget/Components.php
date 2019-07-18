@@ -7,6 +7,7 @@ class Components
     //导航
     public function menu($current_index=[])
     {
+
         $menu = [
             ['name'=> '用户管理','icon'=>'fa fa-dashboard','index'=>'user','child'=>[
                 ['name'=>'用户列表','url'=>'','index'=>'user/index','child'=>[]],
