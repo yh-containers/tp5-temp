@@ -5,9 +5,27 @@ $.common={
         var select_query = typeof obj==='object' ? obj : $("#form")
         sendAjax(select_query.attr('action'),select_query.serialize(),'post',()=>{
             //返回上一个页面
-            history.back();
+            var redirect_url = redirectMode();
+            if(redirect_url.length>0){
+                window.location.href=redirect_url
+            }else{
+                window.location.reload()
+            }
+
         })
     },
+    //待确定请求动作
+    waitConfirm:function(tip_msg,url,data,type,func){
+        //默认请求成功指定动作
+        func = typeof func ==='function' ? func:()=>{
+            //默认刷新页面
+            window.location.reload()
+        }
+        layer.confirm(tip_msg,function(){
+
+            sendAjax(url,data,type,func)
+        })
+    }
 }
 
 //发送请求
@@ -47,4 +65,16 @@ function sendAjax(url,data,type,func){
             console.log('complete')
         }
     })
+}
+
+//获取上一个页面
+function redirectMode(){
+    //获取当前域名  window.location.host
+    var referrer = '';
+    if(document.referrer.length>0 && document.referrer.indexOf(window.location.host)>-1){
+        //说明在当前域名下操作
+        referrer  = document.referrer;
+    }
+
+    return referrer
 }

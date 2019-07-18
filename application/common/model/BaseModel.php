@@ -6,7 +6,26 @@ use think\Validate;
 
 class BaseModel extends Model
 {
+    public static $fields_status = ['--','正常','关闭'];
+    //状态
+    public static function getPropInfo($propOrFunc,$key=null,$field=null)
+    {
+        $class = self::class;
+        if(method_exists($class,$propOrFunc)){
+            $data = $class::$propOrFunc();
+        }elseif(property_exists($class,$propOrFunc)){
+            $data = $class::$$propOrFunc;
+        }else{
+            return false;
+        }
 
+        if(is_null($key)){
+            return is_null($field)?$data:'';
+        }else{
+            $info = isset($data[$key])?$data[$key]:[];
+            return is_null($field)?$info:(isset($info[$field])?$info[$field]:'');
+        }
+    }
     /*
      * 数据保存/更新
      * */
@@ -36,16 +55,15 @@ class BaseModel extends Model
     /*
      * 数据删除
      * */
-    public function actionDel($id,$proxy_id=false)
+    public function actionDel(array $where=[])
     {
         try{
-            $where[] =[$this->getPk(),'=',$id];
-            $proxy_id!==false && $where[] =['proxy_id','=',$proxy_id];
-            $model = $this->where($where)->find($id);
+            !count($where) && exception('条件异常');
+            $model = $this->where($where)->find();
             $model && $model->delete();
             return ['code'=>1,'msg'=>'删除成功'];
         }catch (\Exception $e) {
-            return ['code'=>0,'msg'=>'删除异常'.$e->getMessage()];
+            return ['code'=>0,'msg'=>'删除异常:'.$e->getMessage()];
         }
 
     }

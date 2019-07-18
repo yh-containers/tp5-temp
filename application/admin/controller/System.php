@@ -5,9 +5,8 @@ class System extends Common
 {
     public function manager()
     {
-        return view('manager',[
-
-        ]);
+        $model = new \app\common\model\SysManager();
+        return self::showNormalPage($model,'manager');
     }
 
     //用户登录
@@ -32,5 +31,12 @@ class System extends Common
 
     }
 
+    //删除数据
+    public function managerDel()
+    {
+        $id = $this->request->param('id',0,'int');
+        $model = new \app\common\model\SysManager();
+        return $model->actionDel(['id'=>$id]);
+    }
 
 }

@@ -13,68 +13,45 @@
         <form role="form">
             <div class="box-body no-padding">
                 <table class="table table-striped">
-                    <tbody><tr>
-                        <th width="20">#</th>
-                        <th width="80">用户名</th>
-                        <th width="80">手机号</th>
-                        <th width="60">登录次数</th>
-                        <th width="120">最后一次登录时间</th>
-                        <th width="120">最后一次登录ip</th>
-                        <th width="60">状态</th>
-                        <th width="120">操作</th>
-                    </tr>
-                    <tr>
-                        <td>1.</td>
-                        <td>Update software</td>
-                        <td>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-red">55%</span></td>
-                    </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td>Clean database</td>
-                        <td>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-yellow">70%</span></td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>Cron job running</td>
-                        <td>
-                            <div class="progress progress-xs progress-striped active">
-                                <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-light-blue">30%</span></td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td>Fix and squish bugs</td>
-                        <td>
-                            <div class="progress progress-xs progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-green">90%</span></td>
-                    </tr>
-                    </tbody></table>
+                    <thead>
+                        <tr>
+                            <th width="20">#</th>
+                            <th width="80">用户名</th>
+                            <th width="100">登录帐号</th>
+                            <th width="80">手机号</th>
+                            <th width="60">登录次数</th>
+                            <th width="120">最后一次登录ip</th>
+                            <th width="120">最后一次登录时间</th>
+                            <th width="120">创建时间</th>
+                            <th width="60">状态</th>
+                            <th width="120">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volist name="list" id="vo"}
+                        <tr>
+                            <td>{$i}</td>
+                            <td>{$vo['name']}</td>
+                            <td>{$vo['account']}</td>
+                            <td>{$vo['phone']}</td>
+                            <td>{$vo['login_times']}</td>
+                            <td>{$vo['last_login_ip']}</td>
+                            <td>{$vo['last_time']}</td>
+                            <td>{$vo['create_time']}</td>
+                            <td>{:\\app\\common\\model\\SysManager::getPropInfo('fields_status',$vo['status'])}</td>
+                            <td>
+                                <a class="layui-btn layui-btn-sm" href="{:url('managerAdd',['id'=>$vo['id']])}">编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("managerDel",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </tbody>
+                </table>
             </div>
             <!-- /.box-body -->
 
             <div class="box-footer clearfix">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
+                {$page|raw}
             </div>
         </form>
     </div>
