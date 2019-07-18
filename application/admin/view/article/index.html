@@ -26,14 +26,31 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
+                    {volist name="list" id="vo"}
+                    <tr>
+                        <td>{$i}</td>
+                        <td>{$vo['title']}</td>
+                        <td>{volist name="vo['img']" id="img"}
+                            <img src="{$img}" alt="" width="40" height="40">
+                        {/volist}
+                        </td>
+                        <td>{$vo['author']}</td>
+                        <td>{$vo['views']}</td>
+                        <td>{$vo['show_time']}</td>
+                        <td>{:\\app\\common\\model\\Article::getPropInfo('fields_status',$vo['status'])}</td>
+                        <td>
+                            <a class="layui-btn layui-btn-sm" href="{:url('add',['id'=>$vo['id']])}">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("del",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
+                        </td>
+                    </tr>
+                    {/volist}
                     </tbody>
                 </table>
             </div>
             <!-- /.box-body -->
 
             <div class="box-footer clearfix">
+                {$page|raw}
             </div>
         </form>
     </div>
