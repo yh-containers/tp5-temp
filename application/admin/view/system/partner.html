@@ -1,0 +1,61 @@
+{extend name="base" /}
+<!--高亮选中效果-->
+{block name="current_index"}system,system/partner{/block}
+
+{block name="content"}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <a class="layui-btn layui-btn-sm" href="{:url('partnerAdd')}">添加合作伙伴</a>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+            <div class="box-body no-padding">
+
+                <table class="table table-striped" id="layer-photos-demo">
+                    <thead>
+                    <tr>
+                        <th width="80">#</th>
+                        <th width="80">名称</th>
+                        <th width="100">图片</th>
+                        <th width="120">url</th>
+                        <th width="120">更新日期</th>
+                        <th width="80">状态</th>
+                        <th width="80">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="list" id="vo"}
+                    <tr>
+                        <td>{$i}</td>
+                        <td>{$vo['name']}</td>
+                        <td><img src="{$vo['img']}" width="80" height="80" alt="{$vo['name']}"></td>
+                        <td>{$vo['url']}</td>
+                        <td>{$vo['update_time']}</td>
+                        <td>{:\\app\\common\\model\\Partner::getPropInfo('fields_status',$vo['status'])}</td>
+                        <td>
+                            <a class="layui-btn layui-btn-sm" href="{:url('partnerAdd',['id'=>$vo['id']])}">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("partnerDel",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer clearfix">
+            </div>
+    </div>
+    <!-- /.error-page -->
+{/block}
+{block name="script"}
+<script>
+    layui.use(['layer'],function(){
+        layui.layer.photos({
+            photos: '#layer-photos-demo'
+            ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+        });
+    })
+</script>
+{/block}

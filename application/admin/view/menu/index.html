@@ -1,0 +1,59 @@
+{extend name="base" /}
+<!--高亮选中效果-->
+{block name="current_index"}menu,menu/index{/block}
+
+{block name="content"}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <a class="layui-btn layui-btn-sm" href="{:url('add')}">添加栏目</a>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th width="80">栏目名</th>
+                            <th width="100">跳转地址</th>
+                            <th width="120">更新日期</th>
+                            <th width="60">状态</th>
+                            <th width="120">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volist name="list" id="vo"}
+                        <tr>
+                            <td>{$vo['name']}</td>
+                            <td>{$vo['url']}</td>
+                            <td>{$vo['update_time']}</td>
+                            <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_status',$vo['status'])}</td>
+                            <td>
+                                <a class="layui-btn layui-btn-sm" href="{:url('add',['id'=>$vo['id']])}">编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("del",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
+                            </td>
+                        </tr>
+
+                            {volist name="vo['link_child']" id="child"}
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;{$child['name']}</td>
+                                <td>{$child['url']}</td>
+                                <td>{$child['update_time']}</td>
+                                <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_status',$child['status'])}</td>
+                                <td>
+                                    <a class="layui-btn layui-btn-sm" href="{:url('add',['id'=>$child['id']])}">编辑</a>
+                                    <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("del",["id"=>$child["id"]])}')" class="ml-5">  删除</a>
+                                </td>
+                            </tr>
+                            {/volist}
+                        {/volist}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer clearfix">
+            </div>
+    </div>
+    <!-- /.error-page -->
+{/block}

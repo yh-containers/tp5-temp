@@ -85,7 +85,7 @@ class System extends Common
         ]);
     }
 
-    //用户登录
+    //轮播图新增/编辑
     public function flowImgAdd()
     {
         $id = $this->request->param('id');
@@ -112,4 +112,46 @@ class System extends Common
         $model = new \app\common\model\Ad();
         return $model->actionDel(['id'=>$id]);
     }
+
+    //合伙人
+    public function partner()
+    {
+        $model = new \app\common\model\Partner();
+        $list = $model->order('sort asc')->paginate();
+        // 获取分页显示
+        $page = $list->render();
+        return view('partner',[
+            'list' => $list,'page'=>$page
+        ]);
+    }
+
+    //合伙人 新增/编辑
+    public function partnerAdd()
+    {
+        $id = $this->request->param('id');
+        $model = new \app\common\model\Partner();
+
+        //表单提交
+        if($this->request->isAjax()){
+            $php_input = $this->request->param();
+            $validate = new \app\common\validate\Partner();
+            return $model->actionAdd($php_input,$validate);
+        }
+        $model = $model->get($id);
+
+        return view('partnerAdd',[
+            'model' => $model
+        ]);
+
+    }
+
+    //合伙人删除数据
+    public function partnerDel()
+    {
+        $id = $this->request->param('id',0,'int');
+        $model = new \app\common\model\Partner();
+        return $model->actionDel(['id'=>$id]);
+    }
+
+
 }
