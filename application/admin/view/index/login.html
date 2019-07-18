@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <input type="text" name="verify" class="form-control verify" placeholder="验证码">
-                            <img src="" id="captcha-image" onclick="changeImage(this)" class="captcha"/>
+                            <img src="{:captcha_src()}" id="captcha-image" onclick="changeImage(this)" class="captcha"/>
                         </div>
                         <div class="row" style="margin-top: 25px;">
                             <!-- /.col -->
@@ -111,7 +111,7 @@
     });
 
     function changeImage() {
-        var url = "";
+        var url = "{:captcha_src()}";
         if(url.indexOf('?')>-1){
             url = url+'&m='+Math.random()
         }else{
