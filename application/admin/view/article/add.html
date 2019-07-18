@@ -1,0 +1,121 @@
+{extend name="base" /}
+<!--高亮选中效果-->
+{block name="current_index"}article,article/index{/block}
+
+{block name="content"}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <!--<h3 class="box-title">Quick Example</h3>-->
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+            <div class="box-body">
+                <form id="form" action="" class="form-horizontal">
+                    <input type="hidden" name="id" value="{$model['id']}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分类</label>
+                        <div class="col-sm-10">
+                            <select name="cid" class="form-control">
+                                <option value="">请选择分类</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="标题" name="title" value="{$model['title']}" maxlength="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">作者</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="作者" name="author" value="{$model['author']}"  maxlength="20">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">来源</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="来源" name="from" value="{$model['from']}"  maxlength="20">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">发布时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control datetime" placeholder="发布时间" name="show_time" value="{:empty($model['show_time'])?date('Y-m-d H:i:s'):$model['show_time']}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">封面图</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" name="img" value="{$model['img']}" />
+                            <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'article'])}', accept: 'images'}">
+                                <i class="layui-icon">&#xe67c;</i>封面图
+                            </button>
+                            <img width="80" height="80" src="{$model['img']}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input type="radio" name="status" value="1" {:$model['status']!=2?'checked':''} />
+                                正常
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="2" {:$model['status']==2?'checked':''}>
+                                关闭
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">简介</label>
+                        <div class="col-sm-10">
+                            <textarea name="intro" class="form-control" rows="5">{$model['intro']}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">详细内容</label>
+                        <div class="col-sm-10">
+                            <!-- 加载编辑器的容器 -->
+                            <script id="container" name="content" type="text/plain">{$model['content']}</script>
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+            </div>
+            <!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="button" onclick="$.common.submitForm()" class="col-sm-offset-2 btn  btn-info">保存</button>
+        </div>
+    </div>
+
+{/block}
+
+
+{block name="script"}
+<!-- 配置文件 -->
+<script type="text/javascript" src="/assets/ueditor1_4_3_3/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/assets/ueditor1_4_3_3/ueditor.all.js"></script>
+
+<script>
+    var ue = UE.getEditor('container');
+    //引用上传组件
+    layui.use(['upload','laydate'],function(){
+        var upload = layui.upload;
+        var laydate = layui.laydate;
+        $.common.fileUpload(upload,'.upload-img')
+        //执行一个laydate实例
+        laydate.render({
+            elem: '.datetime' //指定元素
+            ,type: 'datetime' //默认，可不填
+            ,max: 1
+        });
+    })
+</script>
+{/block}

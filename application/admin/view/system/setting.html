@@ -1,0 +1,87 @@
+{extend name="base" /}
+<!--高亮选中效果-->
+{block name="current_index"}system,system/setting{/block}
+
+{block name="content"}
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h4 class="box-title">常规设置</h4>
+                    <button type="button" onclick="$.common.submitForm($('#form-normal'))" class="col-sm-offset-2 btn btn-sm btn-warning pull-right">保存</button>
+                </div>
+                <div class="box-body">
+                    <form id="form-normal" action="{:url('settingSave')}" class="form-horizontal">
+                        <input type="hidden" name="type" value="normal"/>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">产品资讯热线</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="产品资讯热线" name="content[hot_tel]" value="{:isset($normal_content['hot_tel'])?$normal_content['hot_tel']:''}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">qq</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="qq" name="content[qq]" value="{:isset($normal_content['qq'])?$normal_content['qq']:''}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">微博</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="wb" name="content[wb]" value="{:isset($normal_content['wb'])?$normal_content['wb']:''}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">二维码</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="content[qr_code]" value="{:isset($normal_content['qr_code'])?$normal_content['qr_code']:''}" />
+                                <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'sys-normal'])}', accept: 'images'}">
+                                    <i class="layui-icon">&#xe67c;</i>二维码
+                                </button>
+                                <img width="80" height="80" src="{:isset($normal_content['qr_code'])?$normal_content['qr_code']:''}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">微信二维码</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="content[qr_code_wx]" value="{:isset($normal_content['qr_code_wx'])?$normal_content['qr_code_wx']:''}" />
+                                <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'sys-normal'])}', accept: 'images'}">
+                                    <i class="layui-icon">&#xe67c;</i>微信二维码
+                                </button>
+                                <img width="80" height="80" src="{:isset($normal_content['qr_code_wx'])?$normal_content['qr_code_wx']:''}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备案信息</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="备案信息" name="content[icp]" value="{:isset($normal_content['icp'])?$normal_content['icp']:''}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">页底跳转信息</label>
+                            <div class="col-sm-10">
+                                <textarea name="content[footer_info]" class="form-control" rows="5">{:isset($normal_content['footer_info'])?$normal_content['footer_info']:''}</textarea>
+                                <span class="help-block text-red">每行一个内容 “#”后面的是跳转地址 示例如: 百度#http://www.baidu.com</span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-sm-6"></div>
+    </div>
+
+{/block}
+
+{block name="script"}
+<script>
+    //引用上传组件
+    layui.use(['upload'],function(){
+        var upload = layui.upload;
+        $.common.fileUpload(upload,'.upload-img')
+    })
+</script>
+{/block}

@@ -46,7 +46,7 @@
             </a>
             <ul class="treeview-menu" {:in_array($vo['index'],$current_index)?'style="display: block;"':''}>
                 {volist name="vo['child']" id="child"}
-                    {if(!count($child['child'])>0)}
+                    {if(!count($child['child']))}
                         <li {:in_array($child['index'],$current_index)?'class="active"':''} ><a href="{:url($child['url'])}"><i class="fa fa-circle-o"></i> {$child['name']}</a></li>
                     {else/}
                         <li class="treeview  {:in_array($child['index'],$current_index)?'active menu-open':''}">
