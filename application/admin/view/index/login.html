@@ -55,7 +55,7 @@
             <div class="login-box-warp">
                 <div class="login-box-body">
                     <h2>账号登录 <span>UserLogin</span></h2>
-                    <form action="" method="post" id="form">
+                    <form action="{:url('Index/login')}" method="post" id="form">
                         <div class="form-group">
                             <input type="text" name="account" class="form-control" placeholder="账号">
                         </div>
@@ -69,7 +69,7 @@
                         <div class="row" style="margin-top: 25px;">
                             <!-- /.col -->
                             <div class="col-xs-12">
-                                <button type="button" id="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+                                <button type="submit" id="submit" class="btn btn-primary btn-block btn-flat">登录</button>
                             </div>
                             <!-- /.col -->
                         </div>
@@ -87,28 +87,27 @@
 <script src="/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script>
 
-    $(function () {
-
-        $("#submit").click(function () {
-            $.ajax({
-                url:$("#form").attr('action'),
-                type:'post',
-                data:$("#form").serialize(),
-                success:function(result){
-                    if(result.hasOwnProperty('url')){
-                        window.location.href = result.url
-                    }else{
-                        changeImage()
-                        alert(result.msg)
-                    }
-                },
-                error:function(){
-                    alert('请求异常')
-                }
-            })
-        })
-
-    });
+//    $(function () {
+//        $("#submit").click(function () {
+//            $.ajax({
+//                url:$("#form").attr('action'),
+//                type:'post',
+//                data:$("#form").serialize(),
+//                success:function(result){
+//                    if(result.hasOwnProperty('url')){
+//                        window.location.href = result.url
+//                    }else{
+//                        changeImage()
+//                        alert(result.msg)
+//                    }
+//                },
+//                error:function(){
+//                    alert('请求异常')
+//                }
+//            })
+//        })
+//
+//    });
 
     function changeImage() {
         var url = "{:captcha_src()}";
