@@ -2,5 +2,6 @@
 /.vscode
 *.log
 /uploads
+/ueditor
 .env
 .DS_Store

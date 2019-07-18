@@ -1,0 +1,80 @@
+{extend name="base" /}
+<!--高亮选中效果-->
+{block name="current_index"}system,system/partner{/block}
+
+{block name="content"}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <!--<h3 class="box-title">Quick Example</h3>-->
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+            <div class="box-body">
+                <form id="form" action="" class="form-horizontal">
+                    <input type="hidden" name="id" value="{$model['id']}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="名称" name="name" value="{$model['name']}" maxlength="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">url</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="url" name="url" value="{$model['url']}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" name="img" value="{$model['img']}" />
+                            <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'partner'])}', accept: 'images'}">
+                                <i class="layui-icon">&#xe67c;</i>图片
+                            </button>
+                            <img width="80" height="80" src="{$model['img']}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">排序</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" placeholder="排序" name="sort" value="{:empty($model['sort'])?100:$model['sort']}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input type="radio" name="status" value="1" {:$model['status']!=2?'checked':''} />
+                                正常
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="2" {:$model['status']==2?'checked':''}>
+                                关闭
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="button" onclick="$.common.submitForm()" class="col-sm-offset-2 btn  btn-info">保存</button>
+        </div>
+    </div>
+
+{/block}
+
+
+{block name="script"}
+<script>
+    //引用上传组件
+    layui.use(['upload'],function(){
+        var upload = layui.upload;
+        $.common.fileUpload(upload,'.upload-img')
+    })
+</script>
+{/block}

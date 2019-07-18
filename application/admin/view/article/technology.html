@@ -1,0 +1,55 @@
+{extend name="base" /}
+<!--高亮选中效果-->
+{block name="current_index"}article,article/technology{/block}
+
+{block name="content"}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <a class="layui-btn layui-btn-sm" href="{:url('technologyAdd')}">添加技术支持</a>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+            <div class="box-body no-padding">
+                <table class="table table-striped" id="layer-photos-demo">
+                    <thead>
+                        <tr>
+                            <th width="20">#</th>
+                            <th width="120">问题标题</th>
+                            <th width="250">答案</th>
+                            <th width="80">更新时间</th>
+                            <th width="60">状态</th>
+                            <th width="80">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="list" id="vo"}
+                    <tr>
+                        <td>{$i}</td>
+                        <td>{:mb_strlen($vo['title'],'utf-8')<=20?$vo['title']:mb_substr($vo['title'],0,20,'utf-8').'....'}</td>
+                        <td>{:mb_strlen($vo['content'],'utf-8')<=50?$vo['content']:mb_substr($vo['content'],0,50,'utf-8').'....'}</td>
+                        <td>{$vo['update_time']}</td>
+                        <td>{:\\app\\common\\model\\Ad::getPropInfo('fields_status',$vo['status'])}</td>
+                        <td>
+                            <a class="layui-btn layui-btn-sm" href="{:url('technologyAdd',['id'=>$vo['id']])}">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("technologyDel",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
+                        </td>
+                    </tr>
+                    {/volist}
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer clearfix">
+                {$page|raw}
+            </div>
+    </div>
+    <!-- /.error-page -->
+{/block}
+{block name="script"}
+<script>
+
+</script>
+{/block}
