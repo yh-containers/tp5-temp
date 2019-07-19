@@ -68,4 +68,13 @@ class BaseModel extends Model
 
     }
 
+    //验证文件是否是图片
+    public static function checkImg($file)
+    {
+        if(empty($file)){
+            return null;
+        }
+        return preg_match('/.*(\.png|\.jpg|\.jpeg|\.gif)$/', $file);
+
+    }
 }

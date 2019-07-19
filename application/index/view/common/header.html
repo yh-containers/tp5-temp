@@ -4,7 +4,7 @@
         <ul id="nav" class="nav">
             <li class="nLi {:$act_menu=='index'?'on':''}"><a href="{:url('index/index')}">首页</a></li>
             {volist name="list" id="vo"}
-                <li class="nLi {:$act_menu==$vo['url']?'on':''}"><a href="{$vo['url']}">{$vo['name']}</a></li>
+                <li class="nLi {:$act_menu==$vo['url']?'on':''}"><a href="{:url($vo['url'])}">{$vo['name']}</a></li>
             {/volist}
         </ul>
         <div class="search_icon">

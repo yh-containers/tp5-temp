@@ -42,5 +42,27 @@ class Product extends Common
         ]);
     }
 
+    public function detail()
+    {
+        $id = $this->request->param('id');
+        $model = \app\common\model\Product::get($id);
+        //分类信息
+        $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
+            return $query->where(['status'=>1]);
+        }])->where([['pid','=',0],['status','=',1],['url','=','product/index']])->find();
+        //当前分类
+        $current_cate = null;
+        foreach ($cate['linkChild'] as $vo){
+            if($model['cid']==$vo['id']){
+                $current_cate = $vo;
+                break;
+            }
+        }
 
+        return view('detail',[
+            'model'=> $model,
+            'current_cate'=> $current_cate,
+            'cate'=> $cate,
+        ]);
+    }
 }
