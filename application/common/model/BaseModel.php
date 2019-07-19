@@ -10,7 +10,7 @@ class BaseModel extends Model
     //状态
     public static function getPropInfo($propOrFunc,$key=null,$field=null)
     {
-        $class = self::class;
+        $class = get_called_class();
         if(method_exists($class,$propOrFunc)){
             $data = $class::$propOrFunc();
         }elseif(property_exists($class,$propOrFunc)){

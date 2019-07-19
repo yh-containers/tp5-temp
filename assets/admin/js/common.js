@@ -34,7 +34,7 @@ $.common={
     //文件上传
     fileUpload:function(upload,elem,func){
         //执行实例
-        upload.render({
+        var uploadInst =  upload.render({
             elem: elem //绑定元素
             ,done: function(res){
                 //上传完毕回调
@@ -65,6 +65,7 @@ $.common={
                 layui.layer.msg('上传异常!  ')
             }
         });
+        return uploadInst
     }
 }
 

@@ -11,4 +11,9 @@ class Article extends BaseModel
     protected $name = 'article';
 
 
+
+    public function linkCate()
+    {
+        return $this->belongsTo('Navigation','cid');
+    }
 }

@@ -16,7 +16,8 @@
                     <thead>
                     <tr>
                         <th width="80">#</th>
-                        <th width="80">名称</th>
+                        <th width="80">分类</th>
+                        <th width="200">名称</th>
                         <th width="100">图片</th>
                         <th width="120">更新日期</th>
                         <th width="80">状态</th>
@@ -27,7 +28,8 @@
                     {volist name="list" id="vo"}
                     <tr>
                         <td>{$i}</td>
-                        <td>{$vo['name']}</td>
+                        <td>{$vo['link_cate']['name']}</td>
+                        <td>{:mb_strlen($vo['name'],'utf-8')>20?mb_substr($vo['name'],0,20,'utf-8').'...':$vo['name']}</td>
                         <td><img src="{$vo['img']}" width="80" height="80" alt="{$vo['name']}"></td>
                         <td>{$vo['update_time']}</td>
                         <td>{:\\app\\common\\model\\Cert::getPropInfo('fields_status',$vo['status'])}</td>

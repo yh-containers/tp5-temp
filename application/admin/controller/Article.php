@@ -5,10 +5,7 @@ class Article extends Common
 {
     public function index()
     {
-        $model = new \app\common\model\Article();
-        $list = $model->paginate()->each(function($item){
-            $item['img'] = empty($item['img'])?[]:explode(',',$item['img']);
-        });
+        $list = \app\common\model\Article::with('linkCate')->paginate();
 
         // 获取分页显示
         $page = $list->render();
@@ -21,6 +18,7 @@ class Article extends Common
     //添加文章
     public function add()
     {
+
         $id = $this->request->param('id');
         $model = new \app\common\model\Article();
 
@@ -31,8 +29,12 @@ class Article extends Common
             return $model->actionAdd($php_input,$validate);//调用BaseModel中封装的添加/更新操作
         }
         $model = $model->get($id);
+        //获取产品分类
+        $nav = \app\common\model\Navigation::where(['label'=>1,'status'=>1])->order('sort asc')->select();
+
         return view('add',[
             'model'=>$model,
+            'nav'=>$nav,
         ]);
     }
 
