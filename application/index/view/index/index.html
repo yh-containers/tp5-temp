@@ -5,9 +5,9 @@
 	<div class="banner">
 		<div class="bd">
 			<ul>
-				<li><img src="/assets/index/images/banner.jpg"></li>
-				<li><img src="/assets/index/images/banner.jpg"></li>
-				<li><img src="/assets/index/images/banner.jpg"></li>
+				{volist name="flow_img" id="vo"}
+				<li><img src="{$vo['img']}"></li>
+				{/volist}
 			</ul>
 		</div>
 		<div class="hd"><ul></ul></div>
@@ -37,64 +37,34 @@
 		<div class="index_pro">
 			<div class="pro_title w1200">
 				<h2>安全、稳定、可信赖的工业物联网产品</h2>
-				<p>致力工业物联网生态闭环，具备高兼容性和柔性适配能力，能够完美支撑个性扩展应用</p>
+				<p>{$product_cate['desc']}</p>
 			</div>
 			<div class="pro_list w1200 clearfix">
 				<div class="hd wow fadeInLeft">
 					<ul>
+						{volist name="product_cate['link_child']" id="vo"}
 						<li>
 							<div class="title">
-								<h2>中央空调网关</h2>
+								<h2>{$vo['name']}</h2>
 								<p>产品型号齐全</p>
 							</div>
 						</li>
-						<li>
-							<div class="title">
-								<h2>冷水机组网关</h2>
-								<p>产品型号齐全</p>
-							</div>
-						</li>
-						<li>
-							<div class="title">
-								<h2>精密空调网关</h2>
-								<p>产品型号齐全</p>
-							</div>
-						</li>
-						<li>
-							<div class="title">
-								<h2>仪器仪表采集器</h2>
-								<p>产品型号齐全</p>
+						{/volist}
 
-							</div>
-						</li>
 					</ul>
 				</div>
 				<div class="bd wow fadeInRight">
 					<div class="conWrap">
+
+						{volist name="product_cate['link_child']" id="vo"}
 						<div class="con">
-							<p><img src="images/pro.jpg"></p>
-							<h2>空调室外机网关</h2>
-							<p>提供开关/温度/模式/风扇/温度/故障状态/故障代码/空调在线状态,控制线路最短，合理可靠.保留VRV空调原有特性，一个面板可连控多台室内机。保留VRV空调原有特性，一个面板可连控多台室内机空调集中控制,定时开启空调，分户计量等功能</p>
-							<a href="products.html">查看详情</a>
+							<p><img src="{$vo['img']}"></p>
+							<h2>{$vo['name']}</h2>
+							<p>{$vo['desc']}</p>
+							<a href="{:url('product/index',['cid'=>$vo['id']])}">查看详情</a>
 						</div>
-						<div class="con">
-							<p><img src="images/pro.jpg"></p>
-							<h2>冷水机组网关</h2>
-							<p>提供开关/温度/模式/风扇/温度/故障状态/故障代码/空调在线状态,控制线路最短，合理可靠.保留VRV空调原有特性，一个面板可连控多台室内机。保留VRV空调原有特性，一个面板可连控多台室内机空调集中控制,定时开启空调，分户计量等功能</p>
-							<a href="products.html">查看详情</a>
-						</div>
-						<div class="con">
-							<p><img src="images/pro.jpg"></p>
-							<h2>精密空调网关</h2>
-							<p>提供开关/温度/模式/风扇/温度/故障状态/故障代码/空调在线状态,控制线路最短，合理可靠.保留VRV空调原有特性，一个面板可连控多台室内机。保留VRV空调原有特性，一个面板可连控多台室内机空调集中控制,定时开启空调，分户计量等功能</p>
-							<a href="products.html">查看详情</a>
-						</div>
-						<div class="con">
-							<p><img src="images/pro.jpg"></p>
-							<h2>仪器仪表采集器</h2>
-							<p>提供开关/温度/模式/风扇/温度/故障状态/故障代码/空调在线状态,控制线路最短，合理可靠.保留VRV空调原有特性，一个面板可连控多台室内机。保留VRV空调原有特性，一个面板可连控多台室内机空调集中控制,定时开启空调，分户计量等功能</p>
-							<a href="products.html">查看详情</a>
-						</div>
+						{/volist}
+
 					</div>
 				</div>
 			</div>
@@ -102,58 +72,20 @@
 		<div class="index_case w1200">
 			<div class="index_title">
 				<h2>成功案例</h2>
-				<p>针对不同的业务需求和应用场景，华新智控为各类企业提供更专业的工业物联网解决方案</p>
+				<p>{$case_cate['desc']}</p>
 			</div>
 			<div class="case_left">
 				<div class="bd">
 					<ul class="picList">
+						{volist name="case_cate['link_case']" id="vo"}
 						<li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case01.jpg"></div>
-								<div class="title">案例名称</div>
+							<a href="{:url('article/case',['id'=>$vo['id']])}">
+								<div class="img"><img src="{$vo['img']}"></div>
+								<div class="title">{$vo['name']}</div>
 							</a>
 						</li>
-						<li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case02.jpg"></div>
-								<div class="title">案例名称</div>
-							</a>
-						</li>
-						<li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case03.jpg"></div>
-								<div class="title">案例名称</div>
-							</a>
-						</li>
-						<li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case04.jpg"></div>
-								<div class="title">案例名称</div>
-							</a>
-						</li><li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case01.jpg"></div>
-								<div class="title">案例名称</div>
-							</a>
-						</li>
-						<li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case01.jpg"></div>
-								<div class="title">案例名称</div>
-							</a>
-						</li>
-						<li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case01.jpg"></div>
-								<div class="title">案例名称</div>
-							</a>
-						</li>
-						<li>
-							<a href="case_det.html">
-								<div class="img"><img src="images/case04.jpg"></div>
-								<div class="title">案例名称</div>
-							</a>
-						</li>
+						{/volist}
+
 					</ul>
 				</div>
 				<div class="hd">
@@ -164,120 +96,38 @@
 		<div class="index_solution">
 			<div class="index_title w1200">
 				<h2>解决方案</h2>
-				<p>针对不同的业务需求和应用场景，华新智控为各类企业提供更专业的工业物联网解决方案</p>
+				<p>{$solution_cate['desc']}</p>
 			</div>
 			<div class="case_tabs">
 				<div class="hd w1200">
 					<ul class="clearfix">
+						{volist name="solution_cate['link_child']" id="vo"}
 						<li>
-							<i class="icon"><img src="images/icon03.png"></i>
-							<i class="icon2"><img src="images/icon03-1.png"></i>
-							<p>中央空调网关</p>
+							<i class="icon"><img src="/assets/index/images/icon03.png"></i>
+							<i class="icon2"><img src="/assets/index/images/icon03-1.png"></i>
+							<p>{$vo['name']}</p>
 						</li>
-						<li>
-							<i class="icon"><img src="images/icon04.png"></i>
-							<i class="icon2"><img src="images/icon04-1.png"></i>
-							<p>冷水机组网关</p>
-						</li>
-						<li>
-							<i class="icon"><img src="images/icon05.png"></i>
-							<i class="icon2"><img src="images/icon05-1.png"></i>
-							<p>精密空调网关</p>
-						</li>
-						<li>
-							<i class="icon"><img src="images/icon06.png"></i>
-							<i class="icon2"><img src="images/icon06-1.png"></i>
-							<p>AI节能控制器</p>
-						</li>
-						<li>
-							<i class="icon"><img src="images/icon03.png"></i>
-							<i class="icon2"><img src="images/icon03-1.png"></i>
-							<p>中央空调网关</p>
-						</li>
-						<li>
-							<i class="icon"><img src="images/icon04.png"></i>
-							<i class="icon2"><img src="images/icon04-1.png"></i>
-							<p>冷水机组网关</p>
-						</li>
-						<li>
-							<i class="icon"><img src="images/icon05.png"></i>
-							<i class="icon2"><img src="images/icon05-1.png"></i>
-							<p>精密空调网关</p>
-						</li>
+						{/volist}
+
 					</ul>
 				</div>
 				<div class="bd">
 					<div class="conWrap">
+
+						{volist name="solution_cate['link_child']" id="vo"}
 						<div class="con">
-							<div class="img" style="background-image:url(images/bg02.jpg);"></div>
+							<div class="img" style="background-image:url({$vo['img']});"></div>
 							<div class="content">
 								<div class="text w1200">
-									<h2>中央空调网关解决方案</h2>
-									<p>针对高档写字楼、办公楼等底层高的高层建筑，一般大厦都要求实行统一运营、集中管理、中央式控制、室内要求隐形安装、与装修完美配合、外观美观。</p>
-									<a href="solution.html">了解更多</a>
+									<h2>{$vo['name']}解决方案</h2>
+									<p>{$vo['desc']}</p>
+									<a href="{:url('article/solution',['id'=>$vo['id']])}">了解更多</a>
 								</div>
 							</div>
 						</div>
-						<div class="con">
-							<div class="img" style="background-image:url(images/bg02.jpg);"></div>
-							<div class="content">
-								<div class="text w1200">
-									<h2>冷水机组网关解决方案</h2>
-									<p>针对高档写字楼、办公楼等底层高的高层建筑，一般大厦都要求实行统一运营、集中管理、中央式控制、室内要求隐形安装、与装修完美配合、外观美观。</p>
-									<a href="solution.html">了解更多</a>
-								</div>
-							</div>
-						</div>
-						<div class="con">
-							<div class="img" style="background-image:url(images/bg02.jpg);"></div>
-							<div class="content">
-								<div class="text w1200">
-									<h2>AI节能控制器解决方案</h2>
-									<p>针对高档写字楼、办公楼等底层高的高层建筑，一般大厦都要求实行统一运营、集中管理、中央式控制、室内要求隐形安装、与装修完美配合、外观美观。</p>
-									<a href="solution.html">了解更多</a>
-								</div>
-							</div>
-						</div>
-						<div class="con">
-							<div class="img" style="background-image:url(images/bg02.jpg);"></div>
-							<div class="content">
-								<div class="text w1200">
-									<h2>中央空调网关解决方案</h2>
-									<p>针对高档写字楼、办公楼等底层高的高层建筑，一般大厦都要求实行统一运营、集中管理、中央式控制、室内要求隐形安装、与装修完美配合、外观美观。</p>
-									<a href="solution.html">了解更多</a>
-								</div>
-							</div>
-						</div>
-						<div class="con">
-							<div class="img" style="background-image:url(images/bg02.jpg);"></div>
-							<div class="content">
-								<div class="text w1200">
-									<h2>冷水机组网关解决方案</h2>
-									<p>针对高档写字楼、办公楼等底层高的高层建筑，一般大厦都要求实行统一运营、集中管理、中央式控制、室内要求隐形安装、与装修完美配合、外观美观。</p>
-									<a href="solution.html">了解更多</a>
-								</div>
-							</div>
-						</div>
-						<div class="con">
-							<div class="img" style="background-image:url(images/bg02.jpg);"></div>
-							<div class="content">
-								<div class="text w1200">
-									<h2>AI节能控制器解决方案</h2>
-									<p>针对高档写字楼、办公楼等底层高的高层建筑，一般大厦都要求实行统一运营、集中管理、中央式控制、室内要求隐形安装、与装修完美配合、外观美观。</p>
-									<a href="solution.html">了解更多</a>
-								</div>
-							</div>
-						</div>
-						<div class="con">
-							<div class="img" style="background-image:url(images/bg02.jpg);"></div>
-							<div class="content">
-								<div class="text w1200">
-									<h2>中央空调网关解决方案</h2>
-									<p>针对高档写字楼、办公楼等底层高的高层建筑，一般大厦都要求实行统一运营、集中管理、中央式控制、室内要求隐形安装、与装修完美配合、外观美观。</p>
-									<a href="solution.html">了解更多</a>
-								</div>
-							</div>
-						</div>
+
+						{/volist}
+
 					</div>
 				</div>
 			</div>
@@ -285,62 +135,41 @@
 		<div class="index_news">
 			<div class="index_title w1200">
 				<h2>新闻资讯</h2>
-				<p>致力工业物联网生态闭环，具备高兼容性和柔性适配能力，能够完美支撑个性扩展应用</p>
+				<p>{$news_cate['desc']}</p>
 			</div>
 			<div class="news_tabs w1200">
 				<div class="hd">
 					<ul>
-						<li>公司新闻</li>
-						<li>行业资讯</li>
+						{volist name="news_cate['link_child']" id="vo"}
+							<li>{$vo['name']}</li>
+						{/volist}
 					</ul>
 				</div>
 				<div class="bd">
 					<div class="conWrap">
+						{volist name="news_cate['link_child']" id="vo"}
 						<div class="con">
 							<ul class="clearfix">
+								{volist name="vo['link_news']" id="news"}
+
 								<li>
-									<a href="news_det.html">
-										<div class="img"><img src="images/news01.jpg"></div>
+									<a href="{:url('article/detail',['id'=>$vo['id']])}">
+										<div class="img"><img src="{$news['img']}"></div>
 										<div class="title">
-											<h2>寒潮来袭，煤价或迎来一波小规模的价格上</h2>
-											<p>时间：2019-06-28</p>
+											<h2>{$news['title']}</h2>
+											<p>时间：{:substr($news['show_time'],0,10)}</p>
 										</div>
 										<div class="text">
-											<p>寒潮来袭，煤价或迎来一波小规模的价格上寒潮来袭，煤价或迎来一波小规模的价格上寒潮来袭，煤价或迎来一波小规模的价格上</p>
+											<p>{$news['intro']}</p>
 											<h3>查看详情</h3>
 										</div>
 									</a>
 								</li>
-								<li>
-									<a href="news_det.html">
-										<div class="img"><img src="images/news02.jpg"></div>
-										<div class="title">
-											<h2>寒潮来袭，煤价或迎来一波小规模的价格上</h2>
-											<p>时间：2019-06-28</p>
-										</div>
-										<div class="text">
-											<p>寒潮来袭，煤价或迎来一波小规模的价格上寒潮来袭，煤价或迎来一波小规模的价格上寒潮来袭，煤价或迎来一波小规模的价格上</p>
-											<h3>查看详情</h3>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="news_det.html">
-										<div class="img"><img src="images/news01.jpg"></div>
-										<div class="title">
-											<h2>寒潮来袭，煤价或迎来一波小规模的价格上</h2>
-											<p>时间：2019-06-28</p>
-										</div>
-										<div class="text">
-											<p>寒潮来袭，煤价或迎来一波小规模的价格上寒潮来袭，煤价或迎来一波小规模的价格上寒潮来袭，煤价或迎来一波小规模的价格上</p>
-											<h3>查看详情</h3>
-										</div>
-									</a>
-								</li>
+								{/volist}
 							</ul>
 						</div>
-						<div class="con">
-						</div>
+						{/volist}
+
 					</div>
 				</div>
 			</div>
@@ -384,54 +213,56 @@
 {/block}
 
 {block name="script"}
-	<!-- 导航 -->
-	<script type="text/javascript">
-		var ind = 0; //初始位置
-		var nav= jQuery(".nav");
-		var init = jQuery(".nav .nLi").eq(ind);
-		jQuery("#nav").slide({ 
-			type:"menu",
-			titCell:".nLi", 
-			targetCell:".sub", 
-			effect:"slideDown",
-			delayTime:300 ,
-			triggerTime:0, 
-			returnDefault:true,
-			defaultIndex:ind
-		});	
-	</script>
+<script type="text/javascript" src="/assets/index/js/wow.min.js"></script>
+<script language="javascript" type="text/javascript" src="/assets/index/js/jquery.waypoints.min.js"></script>
 
-	<script type="text/javascript">
-		/* banner切换 */
-		jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click",
-		});
+<!-- 导航 -->
+<script type="text/javascript">
+	var ind = 0; //初始位置
+	var nav= jQuery(".nav");
+	var init = jQuery(".nav .nLi").eq(ind);
+	jQuery("#nav").slide({
+		type:"menu",
+		titCell:".nLi",
+		targetCell:".sub",
+		effect:"slideDown",
+		delayTime:300 ,
+		triggerTime:0,
+		returnDefault:true,
+		defaultIndex:ind
+	});
+</script>
 
-		/*产品多页签*/
-		jQuery(".pro_list").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold",trigger:"click"});
+<script type="text/javascript">
+	/* banner切换 */
+	jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click",
+	});
 
-		/*方案多页签*/
-		jQuery(".case_tabs").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold",trigger:"click"});
+	/*产品多页签*/
+	jQuery(".pro_list").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold",trigger:"click"});
 
-		/*案例滚动*/
-		jQuery(".case_left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:4,trigger:"click",scroll:"4"});
+	/*方案多页签*/
+	jQuery(".case_tabs").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold",trigger:"click"});
 
-		/*新闻多页签*/
-		jQuery(".news_tabs").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold"});
-	</script>
+	/*案例滚动*/
+	jQuery(".case_left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:4,trigger:"click",scroll:"4"});
 
-	<script>
-		if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
-			new WOW().init();
-		};
-	</script>
+	/*新闻多页签*/
+	jQuery(".news_tabs").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold"});
+</script>
 
-	<!-- 数字跳动 -->
-	<script language="javascript" type="text/javascript" src="/assets/index/js/jquery.waypoints.min.js"></script>
-	<script type="text/javascript">
-	    $('.index_about .num span,.index_num .num span').countUp({
-	        delay: 10,
-	        time: 2000
-	    });
+<script>
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		new WOW().init();
+	};
+</script>
 
-	</script>
+<!-- 数字跳动 -->
+<script type="text/javascript">
+	$('.index_about .num span,.index_num .num span').countUp({
+		delay: 10,
+		time: 2000
+	});
+
+</script>
 {/block}

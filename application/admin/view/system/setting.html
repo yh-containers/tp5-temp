@@ -8,7 +8,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h4 class="box-title">常规设置</h4>
-                    <button type="button" onclick="$.common.submitForm($('#form-normal'))" class="col-sm-offset-2 btn btn-sm btn-warning pull-right">保存</button>
+                    <button type="button" onclick="$.common.submitForm($('#form-normal'),1)" class="col-sm-offset-2 btn btn-sm btn-warning pull-right">保存</button>
                 </div>
                 <div class="box-body">
                     <form id="form-normal" action="{:url('settingSave')}" class="form-horizontal">
@@ -67,14 +67,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">备案信息</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="备案信息" name="content[icp]" value="{:isset($normal_content['icp'])?$normal_content['icp']:''}" >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">页底跳转信息</label>
-                            <div class="col-sm-10">
-                                <textarea name="content[footer_info]" class="form-control" rows="5">{:isset($normal_content['footer_info'])?$normal_content['footer_info']:''}</textarea>
-                                <span class="help-block text-red">每行一个内容 “#”后面的是跳转地址 示例如: 百度#http://www.baidu.com</span>
+                                <textarea name="content[icp]" class="form-control" rows="5">{:isset($normal_content['icp'])?$normal_content['icp']:''}</textarea>
                             </div>
                         </div>
 
@@ -86,7 +79,39 @@
         </div>
         <div class="col-sm-6 no-padding">
 
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h4 class="box-title">其它设置</h4>
+                    <button type="button" onclick="$.common.submitForm($('#form-other'),1)" class="col-sm-offset-2 btn btn-sm btn-warning pull-right">保存</button>
+                </div>
+                <div class="box-body">
+                    <form id="form-other" action="{:url('settingSave')}" class="form-horizontal">
+                        <input type="hidden" name="type" value="other"/>
 
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">产品热门关键字</label>
+                            <div class="col-sm-10">
+                                <textarea name="content[product_hot_key]" class="form-control" rows="5">{:isset($other_content['product_hot_key'])?$other_content['product_hot_key']:''}</textarea>
+                                <span class="help-block text-red">一行一个关键字</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">meta关键字</label>
+                            <div class="col-sm-10">
+                                <textarea name="content[meta_key]" class="form-control" rows="5">{:isset($other_content['meta_key'])?$other_content['meta_key']:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">meta描述</label>
+                            <div class="col-sm-10">
+                                <textarea name="content[meta_desc]" class="form-control" rows="5">{:isset($other_content['meta_desc'])?$other_content['meta_desc']:''}</textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

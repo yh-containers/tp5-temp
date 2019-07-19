@@ -1,0 +1,103 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'product/index'])}
+	<div class="nybanner">
+		<p><img src="{$cate['img']}"></p>
+	</div>
+	
+	<div class="main">
+		<div class="inside_top w1200">
+			<div class="title wow fadeInUp">
+				<h2>产品中心<span>PRODUCTS</span></h2>
+			</div>
+			<div class="column clearfix wow fadeInUp">
+				<ul>
+					{volist name="cate['link_child']" id="vo"}
+					<li class="{:$vo['id']==$cid?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+					{/volist}
+				</ul>
+				<div class="bread_crumbs">
+					<p>您当前的位置：<a href="{:url('index/index')}">首页</a>
+						<span>&gt;</span><a href="{:url('product/index')}">产品中心</a>
+						{if(!empty($current_cate))}
+						<span>&gt;</span><a href="javascript:;">{$current_cate['name']}</a>
+						{/if}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="products w1200">
+			<div class="partner_list">
+				<ul class="clearfix">
+					{volist name="partner" id="vo"}
+						<li>
+							<a href="javascript:;">
+								<div class="img"><img src="{$vo['img']}"></div>
+								<div class="name">{$vo['name']}</div>
+							</a>
+						</li>
+					{/volist}
+				</ul>
+			</div>
+			<div class="products_list">
+				<div class="title">
+					<h2>
+						{if(!empty($current_cate))}
+							{$current_cate['name']}<span>{$current_cate['en']}</span>
+						{else/}
+							全部产品
+						{/if}
+
+					</h2>
+					<div class="pro_search">
+						<form>
+							<input type="search" name="keyword" value="{$keyword}" placeholder="请输入空调名称或型号">
+						</form>
+						<p><span>热门搜索：</span>{:widget('Component/hotKey',['type'=>'other','field'=>'product_hot_key'])}</p>
+					</div>
+				</div>
+				<ul class="clearfix">
+					{volist name="list" id="vo"}
+					<li>
+						<a href="{:url('product/detail',['id'=>$vo['id']])}">
+							<div class="img"><img src="{$vo['img']}"></div>
+							<div class="name">{$vo['name']}<span>&gt;</span></div>
+						</a>
+					</li>
+					{/volist}
+
+				</ul>
+				<!--分页-->
+				{$page|raw}
+
+			</div>
+		</div>
+	</div>
+{:widget('Component/footer',['act_menu'=>'index'])}
+{/block}
+
+{block name="script"}
+	<!-- 导航 -->
+	<script type="text/javascript">
+		var ind = 1; //初始位置
+		var nav= jQuery(".nav");
+		var init = jQuery(".nav .nLi").eq(ind);
+		jQuery("#nav").slide({ 
+			type:"menu",
+			titCell:".nLi", 
+			targetCell:".sub", 
+			effect:"slideDown",
+			delayTime:300 ,
+			triggerTime:0, 
+			returnDefault:true,
+			defaultIndex:ind
+		});	
+	</script>
+
+	<script>
+		if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+			new WOW().init();
+		};
+	</script>
+{/block}

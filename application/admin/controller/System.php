@@ -50,8 +50,11 @@ class System extends Common
     {
         $normal_content = \app\common\model\SysSetting::getContent('normal');
         $normal_content = empty($normal_content)?[]:json_decode($normal_content,true);
+        $other_content = \app\common\model\SysSetting::getContent('other');
+        $other_content = empty($other_content)?[]:json_decode($other_content,true);
         return view('setting',[
-            'normal_content' => $normal_content
+            'normal_content' => $normal_content,
+            'other_content' => $other_content,
         ]);
     }
 

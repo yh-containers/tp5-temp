@@ -1,0 +1,39 @@
+<div class="footer">
+    <div class="w1200">
+        <div class="partner wow fadeInUp">
+            <h2>合作伙伴</h2>
+            <ul class="clearfix">
+                {volist name="partner" id="vo"}
+                <li><a href="{:url($vo['url'])}"><img src="{$vo['img']}"></a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="footer_sort clearfix wow fadeInUp">
+            {volist name="list" id="vo"}
+            <dl>
+                <dt><a href="{:url($vo['url'])}">{$vo['name']}</a></dt>
+                {volist name="vo['link_child']" id="child"}
+                <dd><a href="{:url($child['url'])}">{$child['name']}</a></dd>
+                {/volist}
+            </dl>
+            {/volist}
+
+            <div class="footer_ewm">
+                <h2>产品资讯热线</h2>
+                <p>{:widget('Component/getSysSetting',['type'=>'normal','field'=>'hot_tel'])}</p>
+                <p><img src="{:widget('Component/getSysSetting',['type'=>'normal','field'=>'qr_code'])}" width="120" height="120"></p>
+                <ul class="clearfix">
+                    <li><a href=""><img src="/assets/index/images/qq.png"></a></li>
+                    <li>
+                        <a href="javascript:;"><img src="/assets/index/images/wx.png"></a>
+                        <div class="wx_ewm"><img src="{:widget('Component/getSysSetting',['type'=>'normal','field'=>'qr_code_wx'])}"></div>
+                    </li>
+                    <li><a href=""><img src="/assets/index/images/wb.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer_copyright">
+        <p class="wow fadeInUp">{:widget('Component/getSysSetting',['type'=>'normal','field'=>'icp'])}</p>
+    </div>
+</div>

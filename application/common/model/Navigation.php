@@ -14,4 +14,15 @@ class Navigation extends BaseModel
     {
         return $this->hasMany('Navigation','pid')->order('sort asc');
     }
+
+    //关联具体信息
+    public function linkNews()
+    {
+        return $this->hasMany('Article','cid');
+    }
+    //关联具体信息
+    public function linkCase()
+    {
+        return $this->hasMany('Cases','cid');
+    }
 }
