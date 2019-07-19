@@ -1,0 +1,72 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'resource/index'])}
+	<div class="nybanner">
+		<p><img src="{$cate['img']}"></p>
+	</div>
+
+<div class="main">
+	<div class="inside_top w1200">
+		<div class="title">
+			<h2>资料下载<span>DOWNLOAD</span></h2>
+		</div>
+		<div class="column clearfix">
+			<ul>
+				<li class="cur"><a href="download.html">资料下载</a></li>
+			</ul>
+			<div class="bread_crumbs">
+				<p>您当前的位置：<a href="{:url('index/index')}">首页</a><span>&gt;</span><a href="javascript:;">资料下载</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="download w1200">
+		<div class="download_search">
+			<label>按产品型号搜索：</label>
+			<form>
+			<input type="search" name="keyword" value="{$keyword}" placeholder="搜索产品型号">
+			</form>
+		</div>
+		<div class="title clearfix">
+			<div class="name">文件名称</div>
+			<div class="type">文件类型</div>
+			<div class="size">文件大小</div>
+			<div class="num">下载次数</div>
+			<div class="button">下载按钮</div>
+		</div>
+		<ul>
+			{volist name="list" id="vo"}
+			<li class="wow fadeInUp">
+				<div class="name">
+					<i><img src="/assets/index/images/icon07.png"></i>
+					<p>{$vo['name']}</p>
+				</div>
+				<div class="type">{$vo['type']}</div>
+				<div class="size">{$vo['size']}KB</div>
+				<div class="num">{$vo['num']}</div>
+				<div class="button"><a href="javascript:;" class="opt-down" data-file="{$vo['file']}" data-id="{$vo['id']}"><img src="/assets/index/images/icon08.png"></a></div>
+			</li>
+			{/volist}
+
+		</ul>
+		<!--分页-->
+		{$page|raw}
+	</div>
+</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+<script>
+	$(function(){
+		$(".opt-down").click(function(){
+			var $this = $(this)
+			var file = $(this).data('file');
+			$.get("{:url('recordTimes')}",{id:$(this).data('id')},function(result){
+				$this.parent().prev().text($this.parent().prev().text()-0+1)
+				window.open(file);
+			})
+		})
+	})
+</script>
+{/block}

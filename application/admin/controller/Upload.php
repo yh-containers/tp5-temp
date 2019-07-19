@@ -10,7 +10,7 @@ class Upload extends Common
         $this->root_path = \think\facade\Env::get('root_path');
     }
 
-    public function upload($type='images',$open_dir_month=true)
+    public function upload($type='images',$open_info=0)
     {
         $upload_file_key=key($_FILES);
         // 获取表单上传文件 例如上传了001.jpg
@@ -22,7 +22,14 @@ class Upload extends Common
         $info = $file->move( $this->root_path.$save_path);
         if($info){
             // 成功上传后 获取上传信息
-            return [ 'code'=>1,'msg'=>'上传成功','path'=>str_replace('\\','/',$save_path.$info->getSaveName())];
+            $data = [
+                'path'=>str_replace('\\','/',$save_path.$info->getSaveName()),
+            ];
+            if($open_info){
+                $data['size'] = round($info->getSize()/1024);
+                $data['type'] = $info->getExtension();
+            }
+            return array_merge([ 'code'=>1,'msg'=>'上传成功'],$data);
         }else{
             // 上传失败获取错误信息
             return [ 'code'=>0,'msg'=>$file->getError()];

@@ -1,0 +1,67 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/cases'])}
+<div class="nybanner">
+	<p><img src="{$current_cate['img']}"></p>
+</div>
+
+<div class="main">
+    <div class="inside_top w1200">
+        <div class="title">
+            <h2>{$current_cate['name']}<span>{$current_cate['en']}</span></h2>
+        </div>
+        <div class="column clearfix">
+            <ul>
+                {volist name="cate['link_child']" id="vo"}
+                <li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url($vo['url'])}">{$vo['name']}</a></li>
+                {/volist}
+            </ul>
+            <div class="bread_crumbs">
+                <p>您当前的位置：<a href="{:url('index/index')}">首页</a><span>&gt;</span><a href="javascript:;">{$current_cate['name']}</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="news w1200">
+        <div class="news_sort">
+            <ul>
+                {volist name="$current_cate['link_child']" id="vo"}
+                <li class="{:$cid==$vo['id']?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="news_list">
+            <ul>
+                {volist name="list" id="vo"}
+                <li class="wow fadeInUp">
+                    <a href="{:url('newsDetail',['id'=>$vo['id']])}">
+                        <div class="img"><img src="{$vo['img']}"></div>
+                        <div class="text">
+                            <h2>{$vo['title']}</h2>
+                            <p>{$vo['intro']}</p>
+                        </div>
+                        <div class="time">
+                            <h2>{:substr($vo['show_time'],5,5)}</h2>
+                            <h3>{:substr($vo['show_time'],0,4)}</h3>
+                            <p>MORE</p>
+                        </div>
+                    </a>
+                </li>
+                {/volist}
+
+            </ul>
+
+            <!--分页-->
+            {$page|raw}
+        </div>
+    </div>
+</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+<script type="text/javascript" src="/assets/index/js/baguetteBox.min.js"></script>
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
+{/block}

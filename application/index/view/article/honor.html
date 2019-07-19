@@ -1,0 +1,49 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/cases'])}
+<div class="nybanner">
+	<p><img src="{$current_cate['img']}"></p>
+</div>
+
+<div class="main">
+    <div class="inside_top w1200">
+        <div class="title">
+            <h2>{$current_cate['name']}<span>{$current_cate['en']}</span></h2>
+        </div>
+        <div class="column clearfix">
+            <ul>
+                {volist name="cate['link_child']" id="vo"}
+                <li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url($vo['url'])}">{$vo['name']}</a></li>
+                {/volist}
+            </ul>
+            <div class="bread_crumbs">
+                <p>您当前的位置：<a href="{:url('index/index')}">首页</a><span>&gt;</span><a href="javascript:;">{$current_cate['name']}</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="honor w1200">
+        <ul class="clearfix tz-gallery">
+            {volist name="list" id="vo"}
+            <li class="thumbnail wow fadeInUp">
+                <a class="lightbox" href="{$vo['img']}">
+                    <img src="{$vo['img']}">
+                </a>
+                <p>荣誉证书</p>
+            </li>
+            {/volist}
+
+        </ul>
+        <!--分页-->
+        {$page|raw}
+    </div>
+</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+<script type="text/javascript" src="/assets/index/js/baguetteBox.min.js"></script>
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
+{/block}

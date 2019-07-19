@@ -1,0 +1,53 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/cases'])}
+	<div class="nybanner">
+		<p><img src="{$cate['img']}"></p>
+	</div>
+
+<div class="main">
+	<div class="inside_top w1200">
+		<div class="title wow fadeInUp">
+			<h2>解决方案<span>SOLUTION</span></h2>
+		</div>
+		<div class="column clearfix wow fadeInUp">
+			<ul>
+				{volist name="cate['link_child']" id="vo"}
+				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+				{/volist}
+			</ul>
+			<div class="bread_crumbs">
+				<p>您当前的位置：<a href="{:url('index/index')}">首页</a>
+					<span>&gt;</span><a href="{:url('article/cases')}">{$cate['name']}</a>
+					{if(!empty($current_cate))}
+					<span>&gt;</span><a href="{:url('article/cases',['cid'=>$current_cate['id']])}">{$current_cate['name']}</a>
+					{/if}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="news_det w1200">
+		<div class="news_title wow fadeInUp">
+			<h2>{$model['title']}</h2>
+			<p><span>时间：{:substr($model['update_time'],0,10)}</span><span>来源：{$model['from']}</span><span>浏览：{$model['views']}</span></p>
+		</div>
+		<div class="news_content wow fadeInUp">
+			{:htmlspecialchars_decode($model['content'])}
+		</div>
+		{:widget('component/share')}
+		<div class="page_turning clearfix wow fadeInUp">
+			<div class="page_left">
+				<p><a href="{:url('casesDetail',['id'=>$model_up['id']])}">上一篇：{$model_up['title']}</a></p>
+				<p><a href="{:url('casesDetail',['id'=>$model_down['id']])}">下一篇：{$model_down['title']}</a></p>
+			</div>
+			<div class="return_index"><a href="{:url('article/cases')}">返回列表</a></div>
+		</div>
+	</div>
+</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+
+{/block}

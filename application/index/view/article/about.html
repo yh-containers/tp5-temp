@@ -1,0 +1,59 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/about'])}
+	<div class="nybanner">
+		<p><img src="{$current_cate['img']}"></p>
+	</div>
+
+<div class="main">
+	<div class="inside_top w1200">
+		<div class="title">
+			<h2>{$current_cate['name']}<span>{$current_cate['en']}</span></h2>
+		</div>
+		<div class="column clearfix">
+			<ul>
+				{volist name="cate['link_child']" id="vo"}
+				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url($vo['url'])}">{$vo['name']}</a></li>
+				{/volist}
+			</ul>
+			<div class="bread_crumbs">
+				<p>您当前的位置：<a href="{:url('index/index')}">首页</a><span>&gt;</span><a href="javascript:;">{$current_cate['name']}</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="about w1200">
+		<div class="text">
+			{:htmlspecialchars_decode($current_cate['content'])}
+		</div>
+		<div class="culture">
+			<div class="title">
+				<h2>企业文化</h2>
+				<p>COMPANY CULTURE</p>
+			</div>
+			<ul class="clearfix">
+				<li>
+					<i class="icon"><img src="/assets/index/images/about01.jpg"></i>
+					<h2>文化理念</h2>
+					<p>品质源于诚信，专业创造价值</p>
+				</li>
+				<li>
+					<i class="icon"><img src="/assets/index/images/about02.jpg"></i>
+					<h2>工作理念</h2>
+					<p>传统匠心品格，细节铸造非凡，专业创造价值</p>
+				</li>
+				<li>
+					<i class="icon"><img src="/assets/index/images/about03.jpg"></i>
+					<h2>用人理念</h2>
+					<p>人格品质和工作能力的和谐统一是能力综合的体现</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+
+{/block}

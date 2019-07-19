@@ -25,7 +25,7 @@
 			</ul>
 			<div class="bread_crumbs">
 				<p>您当前的位置：<a href="{:url('index/index')}">首页</a>
-					<span>&gt;</span><a href="{:url('product/index')}">产品中心</a>
+					<span>&gt;</span><a href="{:url('product/index')}">{$cate['name']}</a>
 					{if(!empty($current_cate))}
 					<span>&gt;</span><a href="{:url('product/index',['cid'=>$current_cate['id']])}">{$current_cate['name']}</a>
 					{/if}
@@ -54,54 +54,23 @@
 		<div class="related_products">
 			<div class="title"><h2>相关产品</h2></div>
 			<ul class="clearfix">
+				{volist name="up_list" id="vo"}
 				<li>
-					<a href="products_det.html">
-						<div class="img"><img src="images/pro01.jpg"></div>
-						<div class="text">产品名称</div>
+					<a href="{:url('product/detail',['id'=>$vo['id']])}">
+						<div class="img"><img src="{$vo['img']}"></div>
+						<div class="name">{$vo['name']}<span>&gt;</span></div>
 					</a>
 				</li>
-				<li>
-					<a href="products_det.html">
-						<div class="img"><img src="images/pro02.jpg"></div>
-						<div class="text">产品名称</div>
-					</a>
-				</li>
-				<li>
-					<a href="products_det.html">
-						<div class="img"><img src="images/pro03.jpg"></div>
-						<div class="text">产品名称</div>
-					</a>
-				</li>
-				<li>
-					<a href="products_det.html">
-						<div class="img"><img src="images/pro04.jpg"></div>
-						<div class="text">产品名称</div>
-					</a>
-				</li>
+				{/volist}
 			</ul>
 		</div>
 	</div>
 </div>
-{:widget('Component/footer',['act_menu'=>'index'])}
+{:widget('Component/footer',['act_menu'=>'product/index'])}
 {/block}
 
 {block name="script"}
-	<!-- 导航 -->
-	<script type="text/javascript">
-		var ind = 1; //初始位置
-		var nav= jQuery(".nav");
-		var init = jQuery(".nav .nLi").eq(ind);
-		jQuery("#nav").slide({ 
-			type:"menu",
-			titCell:".nLi", 
-			targetCell:".sub", 
-			effect:"slideDown",
-			delayTime:300 ,
-			triggerTime:0, 
-			returnDefault:true,
-			defaultIndex:ind
-		});	
-	</script>
+
 
 	<script>
 		if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){

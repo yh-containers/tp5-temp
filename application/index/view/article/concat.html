@@ -1,0 +1,58 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/cases'])}
+	<div class="nybanner">
+		<p><img src="{$current_cate['img']}"></p>
+	</div>
+
+<div class="main">
+	<div class="inside_top w1200">
+		<div class="title">
+			<h2>{$current_cate['name']}<span>{$current_cate['en']}</span></h2>
+		</div>
+		<div class="column clearfix">
+			<ul>
+				{volist name="cate['link_child']" id="vo"}
+				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url($vo['url'])}">{$vo['name']}</a></li>
+				{/volist}
+			</ul>
+			<div class="bread_crumbs">
+				<p>您当前的位置：<a href="{:url('index/index')}">首页</a><span>&gt;</span><a href="javascript:;">{$current_cate['name']}</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="contact w1200 wow fadeInUp">
+		<div class="contact_top clearfix">
+			<div class="contact_add">
+				<p><img src="/assets/index/images/contact01.jpg"></p>
+				<h3>地址</h3>
+				<p>{:widget('component/getSysSetting',['type'=>'normal','field'=>'addr'])}</p>
+			</div>
+			<div class="contact_add">
+				<p><img src="/assets/index/images/contact02.jpg"></p>
+				<h3>电话</h3>
+				<p>{:widget('component/getSysSetting',['type'=>'normal','field'=>'tel'])}</p>
+			</div>
+			<div class="contact_add">
+				<p><img src="/assets/index/images/contact03.jpg"></p>
+				<h3>传真</h3>
+				<p>{:widget('component/getSysSetting',['type'=>'normal','field'=>'fax'])}</p>
+			</div>
+			<div class="contact_add">
+				<p><img src="/assets/index/images/contact04.jpg"></p>
+				<h3>邮箱</h3>
+				<p>{:widget('component/getSysSetting',['type'=>'normal','field'=>'email'])}</p>
+			</div>
+		</div>
+		<div class="map wow fadeInUp">
+			<iframe src="{:url('index/map')}"></iframe>
+		</div>
+	</div>
+</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+
+{/block}
