@@ -7,8 +7,7 @@ class Product extends Common
     //
     public function index()
     {
-        $model = new \app\common\model\Product();
-        $list = $model->order('sort asc')->paginate();
+        $list = \app\common\model\Product::with(['linkCate'])->order('sort asc')->paginate();
         // 获取分页显示
         $page = $list->render();
         return view('index',[
@@ -45,10 +44,13 @@ class Product extends Common
             $validate = new \app\common\validate\Product();
             return $model->actionAdd($php_input,$validate);
         }
+        //获取数据
         $model = $model->get($id);
-
+        //获取产品分类
+        $nav = \app\common\model\Navigation::where(['label'=>2,'status'=>1])->order('sort asc')->select();
         return view('add',[
-            'model' => $model
+            'model' => $model,
+            'nav' => $nav
         ]);
 
     }

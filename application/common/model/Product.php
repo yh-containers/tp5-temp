@@ -11,11 +11,11 @@ class Product extends BaseModel
     protected $name = 'product';
     //产品各种说明
     public static $default_intro = [
-        ['name'=>'产品概述','ipt_type'=>'textarea'],
-        ['name'=>'应用领域','ipt_type'=>'textarea'],
-        ['name'=>'产品特点','ipt_type'=>'textarea'],
-        ['name'=>'产品概述','ipt_type'=>'file'],
-        ['name'=>'相关资源','ipt_type'=>'file'],
+        ['name'=>'产品概述','content'=>'','ipt_type'=>'textarea'],
+        ['name'=>'应用领域','content'=>'','ipt_type'=>'textarea'],
+        ['name'=>'产品特点','content'=>'','ipt_type'=>'textarea'],
+        ['name'=>'产品概述','content'=>'','ipt_type'=>'file'],
+        ['name'=>'相关资源','content'=>'','ipt_type'=>'file'],
     ];
 
     public function getIntroAttr($value)
@@ -23,4 +23,9 @@ class Product extends BaseModel
         return empty($value)?[]:json_decode($value,true);
     }
 
+
+    public function linkCate()
+    {
+        return $this->belongsTo('Navigation','cid');
+    }
 }

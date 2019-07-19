@@ -23,6 +23,7 @@ class Components
                 ['name'=>'资源下载','url'=>'article/resource','index'=>'article/resource','child'=>[]],
                 ['name'=>'资质证书','url'=>'article/cert','index'=>'article/cert','child'=>[]],
                 ['name'=>'技术支持','url'=>'article/technology','index'=>'article/technology','child'=>[]],
+                ['name'=>'案例中心','url'=>'article/case','index'=>'article/case','child'=>[]],
             ]],
 
             ['name'=> '系统设置','icon'=>'fa fa-dashboard','index'=>'system','child'=>[

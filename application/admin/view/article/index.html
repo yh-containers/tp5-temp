@@ -16,11 +16,12 @@
                     <thead>
                         <tr>
                             <th width="20">#</th>
-                            <th width="80">标题</th>
+                            <th width="80">文章分类</th>
+                            <th width="200">标题</th>
                             <th width="100">图片</th>
                             <th width="80">作者</th>
                             <th width="80">浏览次数</th>
-                            <th width="120">发布时间</th>
+                            <th width="80">发布时间</th>
                             <th width="60">状态</th>
                             <th width="120">操作</th>
                         </tr>
@@ -29,11 +30,9 @@
                     {volist name="list" id="vo"}
                     <tr>
                         <td>{$i}</td>
-                        <td>{$vo['title']}</td>
-                        <td>{volist name="vo['img']" id="img"}
-                            <img src="{$img}" alt="" width="40" height="40">
-                        {/volist}
-                        </td>
+                        <td>{$vo['link_cate']['name']}</td>
+                        <td>{:mb_strlen($vo['title'],'utf-8')<=20?$vo['title']:mb_substr($vo['title'],0,20,'utf-8').'....'}</td>
+                        <td> <img src="{$vo['img']}" alt="" width="40" height="40"> </td>
                         <td>{$vo['author']}</td>
                         <td>{$vo['views']}</td>
                         <td>{$vo['show_time']}</td>
