@@ -6,7 +6,7 @@ class Article extends Common
     public function index()
     {
         $list = \app\common\model\Article::with('linkCate')->paginate();
-
+        //dump($list);die;
         // 获取分页显示
         $page = $list->render();
         return view('index',[
@@ -169,12 +169,13 @@ class Article extends Common
     //案例中心
     public function cases()
     {
-        $model = new \app\common\model\Cases();
-        $list = $model->order('sort asc')->paginate();
+        $list = \app\common\model\Cases::with('linkCate')->paginate();
+        //dump($list);die;
         // 获取分页显示
         $page = $list->render();
         return view('case',[
-            'list' => $list,'page'=>$page
+            'list' => $list,
+            'page'=>$page,
         ]);
     }
 
@@ -193,7 +194,7 @@ class Article extends Common
         }
         $model = $model->get($id);
         //获取产品分类
-        $nav = \app\common\model\Navigation::where(['label'=>1,'status'=>1])->order('sort asc')->select();
+        $nav = \app\common\model\Navigation::where(['label'=>3,'status'=>1])->order('sort asc')->select();
 
         return view('caseAdd',[
             'model'=>$model,

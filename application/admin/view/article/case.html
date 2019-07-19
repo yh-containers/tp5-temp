@@ -20,7 +20,7 @@
                     <th width="200">标题</th>
                     <th width="100">图片</th>
                     <th width="100">来源</th>
-                    <th width="80">浏览次数</th>
+                    <th width="100">浏览次数</th>
                     <th width="80">添加时间</th>
                     <th width="60">状态</th>
                     <th width="120">操作</th>
@@ -38,8 +38,8 @@
                     <td>{$vo['create_time']}</td>
                     <td>{:\\app\\common\\model\\Article::getPropInfo('fields_status',$vo['status'])}</td>
                     <td>
-                        <a class="layui-btn layui-btn-sm" href="{:url('add',['id'=>$vo['id']])}">编辑</a>
-                        <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("del",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
+                        <a class="layui-btn layui-btn-sm" href="{:url('caseAdd',['id'=>$vo['id']])}">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("caseDel",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
                     </td>
                 </tr>
                 {/volist}
