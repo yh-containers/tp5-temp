@@ -6,6 +6,9 @@ use think\Request;
 
 class Index extends Common
 {
+    protected $need_login = true;
+    protected $ignore_action=['Index','login'];
+
     public function index()
     {
         //获取当前用户id写入session
@@ -39,10 +42,13 @@ class Index extends Common
             }
             $model = SysManager::where('account',$account)->find();
             if (!$model) $this->error('请检查账号是否正确');
+            $status = $model['status'];
+            if ($status!=1) $this->error('该账号已停用');
             //判断密码是否正确
-            $id = SysManager::where('account',$account)->value('id');
+//            $id = SysManager::where('account',$account)->value('id');
             if(SysManager::entryPwd($password,$model['salt'])===$model->password){
-                session('user_id',$id);
+                session('user_id',$model['id']);
+                session('user_name',$model['name']);
                 //最后一次登陆时间
                 $model->last_time = time();
                 //登陆ip
