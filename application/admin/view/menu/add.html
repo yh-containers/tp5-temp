@@ -62,6 +62,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">模版</label>
                         <div class="col-sm-10">
+
                             <label>
                                 <input type="radio" name="label" value="0" {:empty($model['label'])?'checked':''}/>
                                 其它栏目
@@ -77,6 +78,10 @@
                             <label>
                                 <input type="radio" name="label" value="3"  {:$model['label']==3?'checked':''}/>
                                 案例栏目
+                            </label>
+                            <label>
+                                <input type="radio" name="label" value="4"  {:$model['label']==4?'checked':''}/>
+                                方案栏目
                             </label>
                         </div>
                     </div>

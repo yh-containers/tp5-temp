@@ -2,21 +2,21 @@
 {block name="content"}
 
 {:widget('Component/header',['act_menu'=>'article/about'])}
-	<div class="nybanner">
-		<p><img src="{$current_cate['img']}"></p>
-	</div>
+<div class="nybanner">
+	<p><img src="{$cate['img']}"></p>
+</div>
 
 <div class="main">
 	<div class="inside_top w1200">
 		<div class="title">
-			<h2>关于我们<span>ABOUT US</span></h2>
+			<h2>{$cate['name']}<span>{$cate['en']}</span></h2>
 		</div>
 		<div class="column clearfix">
 			<ul>
-				<li class="cur"><a href="support.html">技术支持</a></li>
+				<li class="cur"><a href="support.html">{$cate['name']}</a></li>
 			</ul>
 			<div class="bread_crumbs">
-				<p>您当前的位置：<a href="index.html">首页</a><span>&gt;</span><a href="support.html">技术支持</a></p>
+				<p>您当前的位置：<a href="{:url('index/index')}">首页</a><span>&gt;</span><a href="javascript:;">技术支持</a></p>
 			</div>
 		</div>
 	</div>
@@ -28,8 +28,8 @@
 			</div>
 			<ul class="clearfix">
 				<li>
-					<a href="download.html">
-						<div class="img"><img src="images/icon09.png"></div>
+					<a href="{:url('resource/index')}">
+						<div class="img"><img src="/assets/index/images/icon09.png"></div>
 						<div class="text">
 							<h3>帮助文档</h3>
 							<p>海量产品文档</p>
@@ -37,8 +37,8 @@
 					</a>
 				</li>
 				<li>
-					<a href="tencent://message/?uin=8888888">
-						<div class="img"><img src="images/icon10.png"></div>
+					<a href="tencent://message/?uin={:widget('Component/getSysSetting',['type'=>'normal','field'=>'tel'])}">
+						<div class="img"><img src="/assets/index/images/icon10.png"></div>
 						<div class="text">
 							<h3>在线咨询</h3>
 							<p>在线为您解答疑惑</p>
@@ -47,19 +47,19 @@
 				</li>
 				<li>
 					<a href="javascript:;">
-						<div class="img"><img src="images/icon11.png"></div>
+						<div class="img"><img src="/assets/index/images/icon11.png"></div>
 						<div class="text">
 							<h3>24小时服务热线</h3>
-							<p>0755-2871-8529</p>
+							<p>{:widget('Component/getSysSetting',['type'=>'normal','field'=>'tel'])}</p>
 						</div>
 					</a>
 				</li>
 				<li>
 					<a href="javascript:;">
-						<div class="img"><img src="images/icon12.png"></div>
+						<div class="img"><img src="/assets/index/images/icon12.png"></div>
 						<div class="text">
-							<h3>产品咨询 邓工</h3>
-							<p>135-7089-9824</p>
+							<h3>产品咨询 {:widget('Component/getSysSetting',['type'=>'normal','field'=>'product_person'])}</h3>
+							<p>{:widget('Component/getSysSetting',['type'=>'normal','field'=>'hot_tel'])}</p>
 						</div>
 					</a>
 				</li>
@@ -71,90 +71,19 @@
 				<p>COMMON PROBLEMS</p>
 			</div>
 			<ul>
+
+				{volist name="problem_list" id="vo"}
 				<li>
 					<div class="name clearfix">
 						<span>Q</span>
-						<h2>多功能网关连接不上WiFi?</h2>
+						<h2>{$vo['title']}</h2>
 					</div>
 					<div class="content clearfix">
 						<span>A</span>
-						<div class="text">
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-						</div>
+						<div class="text" style="white-space: pre-wrap;word-wrap: break-word; word-break: break-all;"> {$vo['content']} </div>
 					</div>
 				</li>
-				<li>
-					<div class="name clearfix">
-						<span>Q</span>
-						<h2>多功能网关连接不上WiFi?</h2>
-					</div>
-					<div class="content clearfix">
-						<span>A</span>
-						<div class="text">
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="name clearfix">
-						<span>Q</span>
-						<h2>多功能网关连接不上WiFi?</h2>
-					</div>
-					<div class="content clearfix">
-						<span>A</span>
-						<div class="text">
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="name clearfix">
-						<span>Q</span>
-						<h2>多功能网关连接不上WiFi?</h2>
-					</div>
-					<div class="content clearfix">
-						<span>A</span>
-						<div class="text">
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="name clearfix">
-						<span>Q</span>
-						<h2>多功能网关连接不上WiFi?</h2>
-					</div>
-					<div class="content clearfix">
-						<span>A</span>
-						<div class="text">
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="name clearfix">
-						<span>Q</span>
-						<h2>多功能网关连接不上WiFi?</h2>
-					</div>
-					<div class="content clearfix">
-						<span>A</span>
-						<div class="text">
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-							<p>1.连接时请将手机和多功能网关靠近2.需要打开手机WiFi3.需要连接到2.4GHz频段的WiFi网络</p>
-						</div>
-					</div>
-				</li>
+				{/volist}
 			</ul>
 		</div>
 		<div class="service">
@@ -191,5 +120,14 @@
 {/block}
 
 {block name="script"}
-
+<script>
+	$(document).ready(function(){
+		$(".problem .name").click(function(){
+			$(this).siblings().slideToggle("slow");
+			$(this).parent().siblings().children(".content").slideUp("slow");
+			$(this).toggleClass("cur");
+			$(this).parent().siblings().children(".name").removeClass("cur");
+		});
+	});
+</script>
 {/block}

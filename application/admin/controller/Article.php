@@ -209,4 +209,47 @@ class Article extends Common
         $model = new \app\common\model\Cases();
         return $model->actionDel(['id'=>$id]);
     }
+
+    public function solution()
+    {
+        $list = \app\common\model\Solution::with('linkCate')->paginate();
+        //dump($list);die;
+        // 获取分页显示
+        $page = $list->render();
+        return view('solution',[
+            'list' => $list,
+            'page'=>$page
+        ]);
+    }
+
+    //文章
+    public function solutionAdd()
+    {
+
+        $id = $this->request->param('id');
+        $model = new \app\common\model\Solution();
+
+        //表单提交
+        if($this->request->isAjax()){
+            $php_input = $this->request->param();//获取当前请求的参数
+            $validate = new \app\common\validate\Solution();
+            return $model->actionAdd($php_input,$validate);//调用BaseModel中封装的添加/更新操作
+        }
+        $model = $model->get($id);
+        //获取产品分类
+        $nav = \app\common\model\Navigation::where(['label'=>4,'status'=>1])->order('sort asc')->select();
+
+        return view('solutionAdd',[
+            'model'=>$model,
+            'nav'=>$nav,
+        ]);
+    }
+
+    //删除案例
+    public function solutionDel()
+    {
+        $id = $this->request->param('id',0,'int');
+        $model = new \app\common\model\Solution();
+        return $model->actionDel(['id'=>$id]);
+    }
 }
