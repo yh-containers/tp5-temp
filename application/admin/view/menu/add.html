@@ -64,9 +64,20 @@
                         <div class="col-sm-10">
                             <input type="hidden" name="icon" value="{$model['icon']}" />
                             <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'menu'])}', accept: 'images'}">
-                                <i class="layui-icon">&#xe67c;</i>封面图
+                                <i class="layui-icon">&#xe67c;</i>icon
                             </button>
                             <img width="80" height="80" src="{$model['icon']}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">icon选中效果</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" name="icon2" value="{$model['icon2']}" />
+                            <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'menu'])}', accept: 'images'}">
+                                <i class="layui-icon">&#xe67c;</i>icon选中效果
+                            </button>
+                            <img width="80" height="80" src="{$model['icon2']}" />
                         </div>
                     </div>
 
