@@ -67,30 +67,14 @@
 		<div class="application  wow fadeInUp">
 			<div class="title">应用场景</div>
 			<ul class="clearfix">
+				{volist name="list" id="vo"}
 				<li>
-					<a href="solution_det.html">
-						<div class="img"><img src="images/solution01.jpg"></div>
-						<div class="name">智慧节能系统</div>
+					<a href="{:url('solutionDetail',['id'=>$vo['id']])}">
+						<div class="img"><img src="{$vo['img']}"></div>
+						<div class="name">{$vo['title']}</div>
 					</a>
 				</li>
-				<li>
-					<a href="solution_det.html">
-						<div class="img"><img src="images/solution02.jpg"></div>
-						<div class="name">智慧节能系统</div>
-					</a>
-				</li>
-				<li>
-					<a href="solution_det.html">
-						<div class="img"><img src="images/solution03.jpg"></div>
-						<div class="name">智慧节能系统</div>
-					</a>
-				</li>
-				<li>
-					<a href="solution_det.html">
-						<div class="img"><img src="images/solution04.jpg"></div>
-						<div class="name">智慧节能系统</div>
-					</a>
-				</li>
+				{/volist}
 			</ul>
 		</div>
 	</div>

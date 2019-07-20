@@ -21,15 +21,48 @@ class Article extends Common
                 break;
             }
         }
-
+        //
+        $cid = !empty($cid)?$cid:(isset($cate['linkChild'][0])?$cate['linkChild'][0]['id']:0);
+        $where[] =['status','=',1];
+        $where[] =['cid','=',$cid];
+        $list = \app\common\model\Solution::where($where)->order('sort asc')->select();
 
         return view('solution',[
             'cate' => $cate,
             'current_cate' => $current_cate,
             'cid' => $cid,
+            'list' => $list,
         ]);
     }
 
+    public function solutionDetail()
+    {
+        $id = $this->request->param('id');
+
+        $model = \app\common\model\Solution::where(['status'=>1,'id'=>$id])->find();
+        //分类信息
+        $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
+            return $query->where(['status'=>1]);
+        }])->where([['pid','=',0],['status','=',1],['url','=','article/solution']])->find();
+        //当前分类
+        $current_cate = null;
+        foreach ($cate['linkChild'] as $vo){
+            if($model['cid']==$vo['id']){
+                $current_cate = $vo;
+                break;
+            }
+        }
+
+        //浏览次数
+        !empty($model) && $model->setInc('views');
+        $list = \app\common\model\Solution::where([['status','=',1],['id','neq',$id]])->limit(4)->order('sort asc')->select();
+        return view('solutionDetail',[
+            'model'=> $model,
+            'current_cate'=> $current_cate,
+            'cate'=> $cate,
+            'list'=> $list,
+        ]);
+    }
 
     //
     public function cases()
@@ -242,8 +275,16 @@ class Article extends Common
     //技术支持
     public function technology()
     {
+        //分类信息
+        $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
+            return $query->where(['status'=>1]);
+        }])->where([['pid','=',0],['status','=',1],['url','=','article/technology']])->find();
 
+        //常见问题
+        $problem_list = \app\common\model\Technology::where('status',1)->order('sort asc')->select();
         return view('technology',[
+            'cate'=> $cate,
+            'problem_list'=> $problem_list,
         ]);
     }
 

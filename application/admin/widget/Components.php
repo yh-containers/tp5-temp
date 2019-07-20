@@ -24,6 +24,7 @@ class Components
                 ['name'=>'资质证书','url'=>'article/cert','index'=>'article/cert','child'=>[]],
                 ['name'=>'技术支持','url'=>'article/technology','index'=>'article/technology','child'=>[]],
                 ['name'=>'案例中心','url'=>'article/cases','index'=>'article/cases','child'=>[]],
+                ['name'=>'解决方案','url'=>'article/solution','index'=>'article/solution','child'=>[]],
             ]],
 
             ['name'=> '系统设置','icon'=>'fa fa-dashboard','index'=>'system','child'=>[
