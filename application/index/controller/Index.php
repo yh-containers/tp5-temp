@@ -75,6 +75,7 @@ class Index extends Common
         return view('support/support');
     }
 
+    //百度地图
     public function map()
     {
         return view('map');
