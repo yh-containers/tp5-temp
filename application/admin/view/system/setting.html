@@ -14,6 +14,18 @@
                     <form id="form-normal" action="{:url('settingSave')}" class="form-horizontal">
                         <input type="hidden" name="type" value="normal"/>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="地址" name="content[addr]" value="{:isset($normal_content['addr'])?$normal_content['addr']:''}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">传真</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="传真" name="content[fax]" value="{:isset($normal_content['fax'])?$normal_content['fax']:''}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">产品资讯热线</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" placeholder="产品资讯热线" name="content[hot_tel]" value="{:isset($normal_content['hot_tel'])?$normal_content['hot_tel']:''}" >
@@ -28,8 +40,14 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">产品资讯</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="产品资讯" name="content[glr_product_tel]" value="{:isset($normal_content['product_tel'])?$normal_content['product_tel']:''}" >
+                                <input type="text" class="form-control" placeholder="产品资讯" name="content[glr_product_tel]" value="{:isset($normal_content['glr_product_tel'])?$normal_content['glr_product_tel']:''}" >
                                 <span class="help-block text-red">如需人名按如下格式: [A客服]1870278xxx</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮箱</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="email" name="content[email]" value="{:isset($normal_content['email'])?$normal_content['email']:''}" >
                             </div>
                         </div>
                         <div class="form-group">

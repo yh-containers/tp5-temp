@@ -51,4 +51,12 @@ class Component{
         }
         return $str;
     }
+
+    //分享
+    public function share()
+    {
+        return view('share',[
+
+        ])->getContent();
+    }
 }

@@ -1,0 +1,56 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/cases'])}
+	<div class="nybanner">
+		<p><img src="{$cate['img']}"></p>
+	</div>
+	
+	<div class="main">
+		<div class="inside_top w1200">
+			<div class="title wow fadeInUp">
+				<h2>产品中心<span>PRODUCTS</span></h2>
+			</div>
+			<div class="column clearfix wow fadeInUp">
+				<ul>
+					{volist name="cate['link_child']" id="vo"}
+					<li class="{:$vo['id']==$cid?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+					{/volist}
+				</ul>
+				<div class="bread_crumbs">
+					<p>您当前的位置：<a href="{:url('index/index')}">首页</a>
+						<span>&gt;</span><a href="{:url('article/cases')}">{$cate['name']}</a>
+						{if(!empty($current_cate))}
+						<span>&gt;</span><a href="javascript:;">{$current_cate['name']}</a>
+						{/if}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="case w1200">
+			<ul class="clearfix">
+				{volist name="list" id="vo"}
+				<li class="wow fadeInUp">
+					<a href="{:url('casesDetail',['id'=>$vo['id']])}">
+						<div class="img"><img src="{$vo['img']}"></div>
+						<div class="title">{$vo['title']}</div>
+						<div class="text">
+							<h3>{$vo['title']}</h3>
+							<p>{$vo['intro']}</p>
+							<span>查看案例</span>
+						</div>
+					</a>
+				</li>
+				{/volist}
+
+			</ul>
+			<!--分页-->
+			{$page|raw}
+		</div>
+	</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+
+{/block}

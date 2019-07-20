@@ -1,0 +1,103 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/solution'])}
+<div class="nybanner">
+	<p><img src="{$cate['img']}"></p>
+</div>
+
+<div class="main">
+	<div class="inside_top w1200">
+		<div class="title wow fadeInUp">
+			<h2>解决方案<span>solution</span></h2>
+		</div>
+		<div class="column clearfix wow fadeInUp">
+			<ul>
+				{volist name="cate['link_child']" id="vo"}
+				<li class="{:$vo['id']==$cid?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+				{/volist}
+
+			</ul>
+			<div class="bread_crumbs">
+				<p>您当前的位置：<a href="{:url('index/index')}">首页</a>
+					<span>&gt;</span><a href="{:url('product/index')}">{$cate['name']}</a>
+					{if(!empty($current_cate))}
+					<span>&gt;</span><a href="javascript:;">{$current_cate['name']}</a>
+					{/if}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="solution w1200">
+		<div class="info wow fadeInUp">
+			<div class="title">{$current_cate['name']}</div>
+			<div class="text">
+				{$current_cate['desc']}
+			</div>
+		</div>
+		<div class="advantage wow fadeInUp">
+			<div class="title">方案优势</div>
+			<ul class="clearfix">
+				<li>
+					<div class="img"><img src="/assets/index/images/solution05.jpg"></div>
+					<div class="text">
+						<i><img src="/assets/index/images/icon17.png"></i>
+						<h2>互联互通</h2>
+						<p>通过子系统之间互联互通实现设备之间直接对话</p>
+					</div>
+				</li>
+				<li>
+					<div class="img"><img src="/assets/index/images/solution06.jpg"></div>
+					<div class="text">
+						<i><img src="/assets/index/images/icon18.png"></i>
+						<h2>数据共享</h2>
+						<p>通过数据的集中存储和管理实现数据共享</p>
+					</div>
+				</li>
+				<li>
+					<div class="img"><img src="/assets/index/images/solution07.jpg"></div>
+					<div class="text">
+						<i><img src="/assets/index/images/icon19.png"></i>
+						<h2>响应及时</h2>
+						<p>通过大数据的分析与处理实现场景的及时有效控制</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="application  wow fadeInUp">
+			<div class="title">应用场景</div>
+			<ul class="clearfix">
+				<li>
+					<a href="solution_det.html">
+						<div class="img"><img src="images/solution01.jpg"></div>
+						<div class="name">智慧节能系统</div>
+					</a>
+				</li>
+				<li>
+					<a href="solution_det.html">
+						<div class="img"><img src="images/solution02.jpg"></div>
+						<div class="name">智慧节能系统</div>
+					</a>
+				</li>
+				<li>
+					<a href="solution_det.html">
+						<div class="img"><img src="images/solution03.jpg"></div>
+						<div class="name">智慧节能系统</div>
+					</a>
+				</li>
+				<li>
+					<a href="solution_det.html">
+						<div class="img"><img src="images/solution04.jpg"></div>
+						<div class="name">智慧节能系统</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{:widget('Component/footer')}
+{/block}
+
+{block name="script"}
+
+{/block}

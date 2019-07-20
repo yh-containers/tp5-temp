@@ -74,4 +74,9 @@ class Index extends Common
     {
         return view('support/support');
     }
+
+    public function map()
+    {
+        return view('map');
+    }
 }

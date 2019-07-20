@@ -1,0 +1,80 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'product/index'])}
+<div class="nybanner">
+	<div class="det_img w1200 clearfix">
+		<div class="text">
+			<h2>{$model['name']}</h2>
+			<p>{$model['desc']}</p>
+		</div>
+		<div class="img"><img src="{$model['img']}"></div>
+	</div>
+</div>
+
+<div class="main">
+	<div class="inside_top w1200">
+		<div class="title wow fadeInUp">
+			<h2>产品中心<span>PRODUCTS</span></h2>
+		</div>
+		<div class="column clearfix wow fadeInUp">
+			<ul>
+				{volist name="cate['link_child']" id="vo"}
+				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+				{/volist}
+			</ul>
+			<div class="bread_crumbs">
+				<p>您当前的位置：<a href="{:url('index/index')}">首页</a>
+					<span>&gt;</span><a href="{:url('product/index')}">{$cate['name']}</a>
+					{if(!empty($current_cate))}
+					<span>&gt;</span><a href="{:url('product/index',['cid'=>$current_cate['id']])}">{$current_cate['name']}</a>
+					{/if}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="products_det w1200">
+		<div class="content">
+			{volist name="model['intro']" id="vo"}
+			<div class="title">{$vo['name']}</div>
+			<div class="text">
+				{if($vo['ipt_type']=='file')}
+					{if(!empty(\app\common\model\BaseModel::checkImg($vo['content'])))}
+						<img src="{$vo['content']}">
+					{else/}
+						<a href="{$vo['content']}" target="_blank">查看</a>
+					{/if}
+				{else/}
+					{$vo['content']}
+				{/if}
+			</div>
+			{/volist}
+
+		</div>
+		<div class="related_products">
+			<div class="title"><h2>相关产品</h2></div>
+			<ul class="clearfix">
+				{volist name="up_list" id="vo"}
+				<li>
+					<a href="{:url('product/detail',['id'=>$vo['id']])}">
+						<div class="img"><img src="{$vo['img']}"></div>
+						<div class="name">{$vo['name']}<span>&gt;</span></div>
+					</a>
+				</li>
+				{/volist}
+			</ul>
+		</div>
+	</div>
+</div>
+{:widget('Component/footer',['act_menu'=>'product/index'])}
+{/block}
+
+{block name="script"}
+
+
+	<script>
+		if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+			new WOW().init();
+		};
+	</script>
+{/block}
