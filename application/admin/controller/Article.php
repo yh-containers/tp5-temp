@@ -173,7 +173,7 @@ class Article extends Common
         //dump($list);die;
         // 获取分页显示
         $page = $list->render();
-        return view('case',[
+        return view('cases',[
             'list' => $list,
             'page'=>$page,
         ]);
