@@ -1,0 +1,183 @@
+{extend name="base" /}
+{block name="content"}
+{:widget('Component/header',['act_menu'=>'index'])}
+    <div class="banner">
+        <div class="bd">
+            <ul>
+                {volist name="flow_img" id="vo"}
+                <li><img src="{$vo['img']}"></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="hd"><ul></ul></div>
+    </div>
+    
+    <div class="main">
+        <div class="index_pro">
+            <div class="index_title">
+                <h2>安全、稳定、可信赖的工业物联网产品</h2>
+                <p>{$product_cate['desc']}</p>
+            </div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {volist name="product_cate['link_child']" id="vo"}
+                    <div class="swiper-slide">
+                        <a href="{:url('product/detail',['id'=>$vo['id']])}">
+                            <div class="img"><img src="{$vo['img']}"></div>
+                            <div class="text">
+                                <h2>{$vo['name']}</h2>
+                                <p>{$vo['desc']}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {/volist}
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+        <div class="index_case">
+            <div class="index_title">
+                <h2>成功案例</h2>
+                <p>{$case_cate['desc']}</p>
+            </div>
+            <div class="swiper-container">
+                {volist name="case_cate['link_child']" id="vo"}
+                <div class="swiper-wrapper">
+                    {volist name="vo['link_case']" id="case"}
+                    <div class="swiper-slide">
+                        <a href="{:url('article/casesDetail',['id'=>$vo['id']])}">
+                            <div class="img"><img src="{$case['img']}" /></div>
+                            <div class="title">{$case['title']}</div>
+                        </a>
+                    </div>
+                    {/volist}
+                </div>
+                {/volist}
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </div>
+        <div class="index_solution">
+            <div class="index_title">
+                <h2>解决方案</h2>
+                <p>{$solution_cate['desc']}</p>
+            </div>
+            <ul class="clearfix">
+                {volist name="solution_cate['link_child']" id="vo"}
+                <li>
+                    <a href="{:url('article/solution',['id'=>$vo['id']])}">
+                        <div class="img"><img src="{$vo['h5_img']}"></div>
+                        <div class="text">
+                            <i class="icon"><img src="{$vo['icon']}"></i>
+                            <div class="name">{$vo['name']}</div>
+                        </div>
+                    </a>
+                </li>
+                {/volist}
+            </ul>
+            <p><a href="{:url('article/solution')}">查看更多解决方案 &gt;</a></p>
+        </div>
+        <div class="index_news">
+            <div class="index_title">
+                <h2>新闻资讯</h2>
+                <p>{$news_cate['desc']}</p>
+            </div>
+            {volist name="news_cate['link_child']" id="vo"}
+            <ul class="clearfix">
+                {volist name="vo['link_news']" id="news"}
+                <li>
+                    <a href="{:url('article/newsDetail',['id'=>$news['id']])}">
+                        <div class="img"><img src="{$news['img']}"></div>
+                        <div class="text">
+                            <h2>{$news['title']}</h2>
+                            <p>{$news['intro']}</p>
+                        </div>
+                    </a>
+                </li>
+                {/volist}
+            </ul>
+            {/volist}
+        </div>
+        <div class="index_about">
+            <dl>
+                <dt>深圳市华新网络能源有限公司</dt>
+                <dd>
+                    <p>深圳市华新网络能源有限公司，成立于2014年，是一家集设备能源管控平台、暖通空调自控、工业设备互联、工
+                    <p>厂智能等解决方案设计、工程实施、运营管理于一体的综合节能服务商。深圳华新主要业务范围及服务领域包括设备能源管控系统、工业装备互联</p>
+                    <p>网接入设备的产品设计开发及智慧工厂解决方案</p> 
+                    </p>
+                </dd>
+            </dl>
+            <ul class="clearfix">
+                <li>
+                    <div class="num"><span>2014</span><em>年</em></div>
+                    <p>创建于</p>
+                </li>
+                <li>
+                    <div class="num"><span>3000</span><em>家</em></div>
+                    <p>服务客户</p>
+                </li>
+                <li>
+                    <div class="num"><span>99</span><em>%</em></div>
+                    <p>好评度</p>
+                </li>
+                <li>
+                    <div class="num"><span>5</span><em>年</em></div>
+                    <p>行业经验</p>
+                </li>
+            </ul>
+            <a href="about.html">了解华新智控 &gt;</a>
+        </div>
+    </div>
+
+    <div class="footer wrap">
+       <p>Copyright © 2019　版权所有　深圳市华新网络能源有限公司 All Rights Reserved 　<a href="http://www.miibeian.gov.cn/">备案号：粤ICP8888888</a></p>
+    </div>
+
+{:widget('Component/footer',['act_menu'=>'index'])}
+{/block}
+
+
+{block name="script"}
+    <link rel="stylesheet" type="text/css" href="/assets/m/css/swiper.min.css">
+    <script src="/assets/m/js/swiper-3.4.2.min.js" type="text/javascript"></script>
+    <script>
+        //banner
+        var swiper = new Swiper('.swiper-container-banner',{
+        pagination: '.banner-pagination',
+        paginationClickable: true,
+        loop: true,
+        autoplay:3000,
+        });
+
+        var swiper = new Swiper('.index_pro .swiper-container', {
+            prevButton:'.swiper-button-prev',
+            nextButton:'.swiper-button-next',
+            autoplay:3000,
+            loop: true,
+        });
+
+        var swiper = new Swiper('.index_case .swiper-container', {
+            pagination: '.swiper-pagination',
+            slidesPerView: 2,
+            slidesPerGroup:2,
+            paginationClickable: true,
+            spaceBetween: 10,
+            loop: false,
+            autoplay:3000,
+        });
+    </script>
+
+    <!-- 数字跳动 -->
+    <script language="javascript" type="text/javascript" src="/assets/m/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript">
+        $('.index_about .num span,.index_num .num span').countUp({
+            delay: 10,
+            time: 2000
+        });
+
+    </script>
+
+{/block}

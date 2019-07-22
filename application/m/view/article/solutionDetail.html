@@ -1,0 +1,58 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/solution'])}
+    <div class="nybanner">
+        <p><img src="{$cate['img']}"></p>
+    </div>
+    
+    <div class="main">
+        <div class="inside_title">
+            <h2>解决方案</h2>
+            <p>SOLUTION</p>
+        </div>
+        <div class="inside_sort">
+            <select onchange="changePage(this)">
+                {volist name="cate['link_child']" id='vo'}
+                <option  value="{$vo['id']}" {:$vo['id']==$current_cate['id']?'selected':''}>{$vo['name']}</option>
+                {/volist}
+            </select>
+        </div>
+        <div class="news_det">
+            <div class="news_title">
+                <h2>{$model['title']}</h2>
+                <p><span>{:substr($model['update_time'],0,10)}</span><span>来源：{$model['from']}</span><span>浏览：{$model['views']}</span></p>
+            </div>
+            <div class="news_content">
+                {:htmlspecialchars_decode($model['content'])}
+            </div>        
+            <div class="related_case">
+                <div class="solution_title">相关案例</div>
+                <ul class="clearfix">
+                    {volist name="list" id="vo"}
+                    <li>
+                        <a href="{:url('solutionDetail',['id'=>$vo['id']])}">
+                            <div class="img"><img src="{$vo['img']}"></div>
+                            <div class="name">{$vo['title']}</div>
+                        </a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer wrap">
+       <p>Copyright © 2019　版权所有　深圳市华新网络能源有限公司 All Rights Reserved 　<a href="http://www.miibeian.gov.cn/">备案号：粤ICP8888888</a></p>
+    </div>
+
+{:widget('Component/footer')}
+{/block}
+
+{block name="script"}
+<script>
+    function changePage(obj){
+        location.href="{:url('article/solution')}?cid="+$(obj).val()
+    }
+</script>
+{/block}

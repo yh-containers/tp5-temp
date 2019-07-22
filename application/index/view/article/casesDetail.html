@@ -1,7 +1,7 @@
 {extend name="base" /}
 {block name="content"}
 
-{:widget('Component/header',['act_menu'=>'article/cases'])}
+{:widget('Component/header',['act_menu'=>'article/news'])}
 	<div class="nybanner">
 		<p><img src="{$cate['img']}"></p>
 	</div>
@@ -45,7 +45,7 @@
 		</div>
 	</div>
 </div>
-{:widget('Component/footer',['act_menu'=>'product/index'])}
+{:widget('Component/footer')}
 {/block}
 
 {block name="script"}
