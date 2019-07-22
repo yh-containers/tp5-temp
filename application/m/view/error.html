@@ -1,0 +1,53 @@
+{extend name="base" /}
+{block name="style"}
+<style>
+	.error{font-size: 26px;text-align: center;color:orange;padding: 100px;}
+</style>
+{/block}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'index'])}
+<div class="error">{$msg}</div>
+{:widget('Component/footer',['act_menu'=>'index'])}
+
+{/block}
+
+{block name="script"}
+<script type="text/javascript" src="/assets/index/js/wow.min.js"></script>
+<script language="javascript" type="text/javascript" src="/assets/index/js/jquery.waypoints.min.js"></script>
+
+
+
+<script type="text/javascript">
+	/* banner切换 */
+	jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click",
+	});
+
+	/*产品多页签*/
+	jQuery(".pro_list").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold",trigger:"click"});
+
+	/*方案多页签*/
+	jQuery(".case_tabs").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold",trigger:"click"});
+
+	/*案例滚动*/
+	jQuery(".case_left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:4,trigger:"click",scroll:"4"});
+
+	/*新闻多页签*/
+	jQuery(".news_tabs").slide({ mainCell:".conWrap", targetCell:".more a", effect:"fold"});
+</script>
+
+<script>
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		new WOW().init();
+	};
+</script>
+
+<!-- 数字跳动 -->
+<script type="text/javascript">
+	$('.index_about .num span,.index_num .num span').countUp({
+		delay: 10,
+		time: 2000
+	});
+
+</script>
+{/block}

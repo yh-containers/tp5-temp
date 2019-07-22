@@ -79,9 +79,9 @@
 					<ul class="picList">
 						{volist name="case_cate['link_case']" id="vo"}
 						<li>
-							<a href="{:url('article/case',['id'=>$vo['id']])}">
+							<a href="{:url('article/cases',['id'=>$vo['id']])}">
 								<div class="img"><img src="{$vo['img']}"></div>
-								<div class="title">{$vo['name']}</div>
+								<div class="title">{$vo['title']}</div>
 							</a>
 						</li>
 						{/volist}

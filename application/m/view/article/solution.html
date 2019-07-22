@@ -1,0 +1,85 @@
+{extend name="base" /}
+{block name="content"}
+{:widget('Component/header',['act_menu'=>'article/solution'])}
+    <div class="nybanner">
+        <p><img src="{$cate['img']}"></p>
+    </div>
+    
+    <div class="main">
+        <div class="inside_title">
+            <h2>解决方案</h2>
+            <p>SOLUTION</p>
+        </div>
+        <div class="inside_sort">
+            <select onchange="changePage(this)">
+                {volist name="cate['link_child']" id='vo'}
+                <option  value="{$vo['id']}" {:$vo['id']==$current_cate['id']?'selected':''}>{$vo['name']}</option>
+                {/volist}
+            </select>
+        </div>
+        <div class="solution">
+            <div class="info">
+                <div class="title">{$current_cate['name']}</div>
+                <div class="text">
+                    {$current_cate['desc']}
+                </div>
+            </div>
+            <div class="advantage">
+                <div class="title">方案优势</div>
+                <ul class="clearfix">
+                    <li>
+                        <div class="img"><img src="/assets/m/images/solution05.jpg"></div>
+                        <div class="text">
+                            <i><img src="/assets/m/images/icon17.png"></i>
+                            <h2>互联互通</h2>
+                            <p>通过子系统之间互联互通实现设备之间直接对话</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="img"><img src="/assets/m/images/solution06.jpg"></div>
+                        <div class="text">
+                            <i><img src="/assets/m/images/icon18.png"></i>
+                            <h2>数据共享</h2>
+                            <p>通过数据的集中存储和管理实现数据共享</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="img"><img src="/assets/m/images/solution07.jpg"></div>
+                        <div class="text">
+                            <i><img src="/assets/m/images/icon19.png"></i>
+                            <h2>响应及时</h2>
+                            <p>通过大数据的分析与处理实现场景的及时有效控制</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="application">
+                <div class="title">应用场景</div>
+                <ul class="clearfix">
+                    {volist name="list" id="vo"}
+                    <li>
+                        <a href="{:url('solutionDetail',['id'=>$vo['id']])}">
+                            <div class="img"><img src="{$vo['img']}"></div>
+                            <div class="name">{$vo['title']}</div>
+                        </a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer wrap">
+       <p>Copyright © 2019　版权所有　深圳市华新网络能源有限公司 All Rights Reserved 　<a href="http://www.miibeian.gov.cn/">备案号：粤ICP8888888</a></p>
+    </div>
+
+{:widget('Component/footer')}
+{/block}
+
+{block name="script"}
+<script>
+    function changePage(obj){
+        location.href="{:url('article/solution')}?cid="+$(obj).val()
+    }
+</script>
+{/block}

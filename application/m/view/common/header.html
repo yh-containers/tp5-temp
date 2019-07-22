@@ -1,0 +1,15 @@
+<div class="header">
+    <div class="logo"><a href="index.html"><img src="/assets/m/images/logo.png" alt="" /></a></div>
+    <a href="javascript:;" class="sort cl_nav"></a>
+    <div class="allnav_left">
+        <div class="theclose"><img src="/assets/m/images/close.png" /></div>
+        <dl class="left_one">
+            <dt class="on {:$act_menu=='index'?'on':''}"><a href="{:url('index/index')}">首页</a></dt>
+            {volist name="list" id="vo"}
+            <dt class="{:$act_menu==$vo['url']?'on':$act_menu}"><a href="{:url($vo['url'])}">{$vo['name']}</a></dt>
+            {/volist}
+        </dl>
+    </div>
+    <div class="bk_gray"></div>
+    <div class="clearfix"></div>
+</div>

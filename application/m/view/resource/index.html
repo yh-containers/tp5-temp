@@ -1,0 +1,77 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'resource/index'])}
+    <div class="nybanner">
+        <p><img src="{$cate['img']}"></p>
+    </div>
+    
+    <div class="main">
+        <div class="inside_title">
+            <h2>资料下载</h2>
+            <p>DOWNLOAD</p>
+        </div>
+        <div class="inside_sort">
+            <select onchange="s_click(this)">
+                <option value="index.html" selected="selected">资料下载</option>
+            </select>
+        </div>
+        <div class="download">
+            <div class="download_search">
+                <form>
+                <input type="search"name="keyword" value="{$keyword}" placeholder="搜索文件名称">
+                </form>
+            </div>
+            <div class="title clearfix">
+                <div class="name">文件名称</div>
+                <div class="type">文件类型</div>
+                <div class="num">下载次数</div>
+                <div class="button">下载按钮</div>
+            </div>
+            <ul>
+                {volist name="list" id="vo"}
+                <li>
+                    <div class="name">
+                        <i><img src="/assets/m/images/icon20.png"></i>
+                        <p>{$vo['name']}</p>
+                    </div>
+                    <div class="type">{$vo['type']}</div>
+                    <div class="num">{$vo['num']}</div>
+                    <div class="button"><a href="javascript:;" class="opt-down" data-file="{$vo['file']}" data-id="{$vo['id']}"><img src="/assets/m/images/icon21.png"></a></div>
+                </li>
+                {/volist}
+            </ul>
+            {$page|raw}
+        </div>
+    </div>
+
+    <div class="footer wrap">
+       <p>Copyright © 2019　版权所有　深圳市华新网络能源有限公司 All Rights Reserved 　<a href="http://www.miibeian.gov.cn/">备案号：粤ICP8888888</a></p>
+    </div>
+
+{:widget('Component/footer')}
+{/block}
+
+{block name="script"}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".problem .name").click(function(){
+                $(this).siblings().slideToggle("slow");
+                $(this).parent().siblings().children(".content").slideUp("slow");
+                $(this).toggleClass("cur");
+                $(this).parent().siblings().children(".name").removeClass("cur");
+            });
+        });
+
+        $(function(){
+            $(".opt-down").click(function(){
+                var $this = $(this)
+                var file = $(this).data('file');
+                $.get("{:url('recordTimes')}",{id:$(this).data('id')},function(result){
+                    $this.parent().prev().text($this.parent().prev().text()-0+1)
+                    window.open(file);
+                })
+            })
+        })
+    </script>
+{/block}

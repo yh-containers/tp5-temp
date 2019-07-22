@@ -1,0 +1,68 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'article/news'])}
+    <div class="nybanner">
+        <p><img src="{$current_cate['img']}"></p>
+    </div>
+    
+    <div class="main">
+        <div class="inside_title">
+            <h2>{$current_cate['name']}</h2>
+            <p>{$current_cate['en']}</p>
+        </div>
+        <div class="inside_sort">
+            <select onchange="changePage(this)">
+                {volist name="cate['link_child']" id='vo'}
+                <option  value="{:url($vo['url'])}" {:$vo['id']==$current_cate['id']?'selected':''}>{$vo['name']}</option>
+                {/volist}
+            </select>
+        </div>
+        <div class="news">
+            <div class="news_sort">
+                <ul>
+                    {volist name="$current_cate['link_child']" id="vo"}
+                    <li class="{:$cid==$vo['id']?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="news_list">
+                <ul>
+                    {volist name="list" id="vo"}
+                    <li class="wow fadeInUp">
+                        <a href="{:url('newsDetail',['id'=>$vo['id']])}">
+                            <div class="img"><img src="{$vo['img']}"></div>
+                            <div class="text">
+                                <h2>{$vo['title']}</h2>
+                                <p>{$vo['intro']}</p>
+                                <span>查看更多</span>
+                            </div>
+                            <div class="time">
+                                <h2>{:substr($vo['show_time'],5,5)}</h2>
+                                <h3>{:substr($vo['show_time'],0,4)}</h3>
+                            </div>
+                        </a>
+                    </li>
+                    {/volist}
+                </ul>
+
+                <!--分页-->
+                {$page|raw}
+            </div>
+        </div>
+    </div>
+
+    <div class="footer wrap">
+       <p>Copyright © 2019　版权所有　深圳市华新网络能源有限公司 All Rights Reserved 　<a href="http://www.miibeian.gov.cn/">备案号：粤ICP8888888</a></p>
+    </div>
+
+{:widget('Component/footer')}
+{/block}
+
+{block name="script"}
+<script>
+    function changePage(obj){
+        location.href=$(obj).val()
+    }
+</script>
+{/block}

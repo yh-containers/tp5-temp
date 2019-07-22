@@ -13,9 +13,12 @@ class Article extends Common
         $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
             return $query->where(['status'=>1]);
         }])->where([['pid','=',0],['status','=',1],['url','=','article/solution']])->find();
+        if(empty($cid) && count($cate['link_child'])>0){
+            $cid = $cate['link_child'][0]['id'];
+        }
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if($cid==$vo['id']){
                 $current_cate = $vo;
                 break;
@@ -46,7 +49,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/solution']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if($model['cid']==$vo['id']){
                 $current_cate = $vo;
                 break;
@@ -77,7 +80,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/cases']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if($cid==$vo['id']){
                 $current_cate = $vo;
                 break;
@@ -110,7 +113,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/cases']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if($model['cid']==$vo['id']){
                 $current_cate = $vo;
                 break;
@@ -145,7 +148,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/about']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if('article/aboutus'==$vo['url']){
                 $current_cate = $vo;
                 break;
@@ -165,7 +168,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/about']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if('article/honor'==$vo['url']){
                 $current_cate = $vo;
                 break;
@@ -192,7 +195,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/about']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if('article/concat'==$vo['url']){
                 $current_cate = $vo;
                 break;
@@ -218,7 +221,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/about']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if('article/news'==$vo['url']){
                 $current_cate = $vo;
                 break;
@@ -251,7 +254,7 @@ class Article extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','article/about']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if('article/news'==$vo['url']){
                 $current_cate = $vo;
                 break;

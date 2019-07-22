@@ -1,0 +1,60 @@
+{extend name="base" /}
+{block name="content"}
+
+{:widget('Component/header',['act_menu'=>'product/index'])}
+
+    <div class="nybanner">
+        <p><img src="{$cate['img']}"></p>
+    </div>
+    
+    <div class="main">
+        <div class="inside_title">
+            <h2>产品中心</h2>
+            <p>PRODUCT CENTER</p>
+        </div>
+        <div class="inside_sort">
+            <select onchange="s_click(this)">
+                {volist name="cate['link_child']" id='vo'}
+                <option  value="{$vo['id']}" {:$vo['id']==$current_cate['id']?'selected':''}>{$vo['name']}</option>
+                {/volist}
+            </select>
+        </div>
+        <div class="products">
+            <div class="search">
+                <form>
+                    <input type="search" name="keyword" value="{$keyword}" placeholder="请输入空调名称或型号">
+                </form>
+                <p><span>热门搜索：</span>{:widget('Component/hotKey',['type'=>'other','field'=>'product_hot_key'])}</p>
+            </div>
+            <h2>
+                {if(!empty($current_cate))}
+                {$current_cate['name']}<span>{$current_cate['en']}</span>
+                {else/}
+                全部产品
+                {/if}
+            </h2>
+            <ul class="clearfix">
+                {volist name="list" id="vo"}
+                <li>
+                    <a href="{:url('product/detail',['id'=>$vo['id']])}">
+                        <div class="img"><img src="{$vo['img']}"></div>
+                        <div class="name">{$vo['name']}<span>&gt;</span></div>
+                    </a>
+                </li>
+                {/volist}
+            </ul>
+            <!--分页-->
+            {$page|raw}
+        </div>
+    </div>
+
+    <div class="footer wrap">
+       <p>Copyright © 2019　版权所有　深圳市华新网络能源有限公司 All Rights Reserved 　<a href="http://www.miibeian.gov.cn/">备案号：粤ICP8888888</a></p>
+    </div>
+
+{:widget('Component/footer')}
+{/block}
+
+{block name="script"}
+
+{/block}

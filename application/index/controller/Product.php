@@ -19,7 +19,7 @@ class Product extends Common
         $partner = \app\common\model\Partner::where(['status'=>1])->limit(10)->order('sort asc')->select();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if($cid==$vo['id']){
                 $current_cate = $vo;
                 break;
@@ -52,7 +52,7 @@ class Product extends Common
         }])->where([['pid','=',0],['status','=',1],['url','=','product/index']])->find();
         //当前分类
         $current_cate = null;
-        foreach ($cate['linkChild'] as $vo){
+        foreach ($cate['link_child'] as $vo){
             if($model['cid']==$vo['id']){
                 $current_cate = $vo;
                 break;
