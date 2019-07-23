@@ -56,7 +56,7 @@ class Index extends Common
                 //登陆次数
                 $model->login_times = $model->login_times+1;
                 $model->save();
-                $this->success('登录成功','index/index');
+                $this->success('登录成功','product/index');
             }
             $this->error('请检查密码是否正确');
         }

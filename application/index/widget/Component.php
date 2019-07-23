@@ -4,10 +4,20 @@ namespace app\index\widget;
 class Component{
     //首页顶部导航
     public function header($act_menu = 'index'){
+
+        //分类
+        $cid = request()->param('cid');
+        $keyword = request()->param('keyword','','trim');
+
+        //查询商品信息
+        $where[] = ['status','=',1];
+        !empty($keyword) && $where[] = ['name','like','%'.$keyword.'%'];
+        !empty($cid) && $where[] = ['cid','=',$cid];
         $list = \app\common\model\Navigation::where(['pid'=>0,'status'=>1])->order('sort', 'asc')->select();
         return view('common/header',[
             'act_menu'=>$act_menu,
             'list'=>$list,
+            'keyword' => $keyword,
         ])->getContent();
     }
 

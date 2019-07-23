@@ -10,8 +10,11 @@
         <div class="search_icon">
             <a href="javascript:;"><img src="/assets/index/images/icon01.png"></a>
             <div class="search">
-                <input type="text" class="ssk" name="" placeholder="请输入要搜索的内容">
-                <input type="submit" class="ss" name="" value="">
+                <form action="{:url('product/index')}" method="get">
+
+                <input type="text" class="ssk" name="keyword" value="{:empty($keyword)?'':$keyword}"  placeholder="请输入要搜索的产品">
+                    <input type="submit" class="ss" value="">
+                </form>
             </div>
         </div>
     </div>

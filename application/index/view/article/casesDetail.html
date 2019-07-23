@@ -14,7 +14,7 @@
 		<div class="column clearfix wow fadeInUp">
 			<ul>
 				{volist name="cate['link_child']" id="vo"}
-				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url('cases',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
 				{/volist}
 			</ul>
 			<div class="bread_crumbs">

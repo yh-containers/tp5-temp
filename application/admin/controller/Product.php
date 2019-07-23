@@ -52,7 +52,6 @@ class Product extends Common
             'model' => $model,
             'nav' => $nav
         ]);
-
     }
 
     // 删除数据
@@ -62,7 +61,4 @@ class Product extends Common
         $model = new \app\common\model\Product();
         return $model->actionDel(['id'=>$id]);
     }
-
-
-
 }

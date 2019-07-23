@@ -4,14 +4,15 @@ namespace app\index\controller;
 
 class Resource extends Common
 {
-    //
+    //资料下载
     public function index()
     {
+
         $keyword = $this->request->param('keyword','','trim');
         $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
             return $query->where(['status'=>1]);
-        }])->where([['pid','=',0],['status','=',1],['url','=','article/solution']])->find();
-
+        }])->where([['pid','=',0],['status','=',1],['url','=','resource/index']])->find();
+        //dump($cate);die;
         $where[] = ['status','=',1];
         !empty($keyword) && $where[] = ['name','like','%'.$keyword.'%'];
         $list = \app\common\model\Resource::where($where)->order('sort asc')->paginate(6);

@@ -50,12 +50,10 @@
 							</div>
 						</li>
 						{/volist}
-
 					</ul>
 				</div>
 				<div class="bd wow fadeInRight">
 					<div class="conWrap">
-
 						{volist name="product_cate['link_child']" id="vo"}
 						<div class="con">
 							<p><img src="{$vo['img']}"></p>
@@ -64,7 +62,6 @@
 							<a href="{:url('product/index',['cid'=>$vo['id']])}">查看详情</a>
 						</div>
 						{/volist}
-
 					</div>
 				</div>
 			</div>
@@ -79,7 +76,7 @@
 					<ul class="picList">
 						{volist name="case_cate['link_case']" id="vo"}
 						<li>
-							<a href="{:url('article/cases',['id'=>$vo['id']])}">
+							<a href="{:url('article/casesDetail',['id'=>$vo['id']])}">
 								<div class="img"><img src="{$vo['img']}"></div>
 								<div class="title">{$vo['title']}</div>
 							</a>

@@ -38,6 +38,7 @@ class Article extends Common
         ]);
     }
 
+    //方案详情
     public function solutionDetail()
     {
         $id = $this->request->param('id');
@@ -67,7 +68,7 @@ class Article extends Common
         ]);
     }
 
-    //
+    //精品案例
     public function cases()
     {
         //分类
@@ -102,6 +103,7 @@ class Article extends Common
         ]);
     }
 
+    //案例详情
     public function casesDetail()
     {
         $id = $this->request->param('id');
@@ -135,11 +137,13 @@ class Article extends Common
             'cate'=> $cate,
         ]);
     }
+
     public function aboutUs()
     {
         return $this->about();
     }
 
+    //关于我们
     public function about()
     {
         //分类信息
@@ -160,6 +164,7 @@ class Article extends Common
         ]);
     }
 
+    //荣誉资质
     public function honor()
     {
         //分类信息
@@ -187,6 +192,7 @@ class Article extends Common
         ]);
     }
 
+    //联系我们
     public function concat()
     {
         //分类信息
@@ -208,7 +214,7 @@ class Article extends Common
         ]);
     }
 
-    //新闻
+    //新闻资讯
     public function news()
     {
         //分类
@@ -242,7 +248,7 @@ class Article extends Common
         ]);
     }
 
-
+    //新闻详情
     public function newsDetail()
     {
         $id = $this->request->param('id');

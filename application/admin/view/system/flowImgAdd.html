@@ -26,13 +26,24 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">图片</label>
+                        <label class="col-sm-2 control-label">pc端图片</label>
                         <div class="col-sm-10">
                             <input type="hidden" name="img" value="{$model['img']}" />
                             <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'ad'])}', accept: 'images'}">
                                 <i class="layui-icon">&#xe67c;</i>图片
                             </button>
                             <img width="80" height="80" src="{$model['img']}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">手机端图片</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" name="h5_img" value="{$model['h5_img']}" />
+                            <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'ad'])}', accept: 'images'}">
+                                <i class="layui-icon">&#xe67c;</i>图片
+                            </button>
+                            <img width="80" height="80" src="{$model['h5_img']}" />
                         </div>
                     </div>
 

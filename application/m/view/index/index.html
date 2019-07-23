@@ -1,16 +1,18 @@
 {extend name="base" /}
 {block name="content"}
 {:widget('Component/header',['act_menu'=>'index'])}
-    <div class="banner">
-        <div class="bd">
-            <ul>
-                {volist name="flow_img" id="vo"}
-                <li><img src="{$vo['img']}"></li>
-                {/volist}
-            </ul>
+
+<div class="slider-wrap slider-wrap-banner mgtop">
+    <div class="swiper-container swiper-container-banner" >
+        <div class="swiper-wrapper">
+            {volist name="flow_img" id="vo"}
+            <div class="swiper-slide"><img src="{$vo['h5_img']}" /></div>
+            {/volist}
+
         </div>
-        <div class="hd"><ul></ul></div>
+        <div class="pagination banner-pagination" id="pagination"></div>
     </div>
+</div>
     
     <div class="main">
         <div class="index_pro">
@@ -43,9 +45,8 @@
                 <p>{$case_cate['desc']}</p>
             </div>
             <div class="swiper-container">
-                {volist name="case_cate['link_child']" id="vo"}
                 <div class="swiper-wrapper">
-                    {volist name="vo['link_case']" id="case"}
+                    {volist name="case_cate['link_case']" id="case"}
                     <div class="swiper-slide">
                         <a href="{:url('article/casesDetail',['id'=>$vo['id']])}">
                             <div class="img"><img src="{$case['img']}" /></div>
@@ -54,7 +55,6 @@
                     </div>
                     {/volist}
                 </div>
-                {/volist}
                 <div class="swiper-pagination"></div>
 
             </div>
