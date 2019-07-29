@@ -30,9 +30,9 @@
 		<div class="products w1200">
 			<div class="partner_list">
 				<ul class="clearfix">
-					{volist name="partner" id="vo"}
-						<li>
-							<a href="{:empty($vo['url'])?'javascript:;':url($vo['url'])}">
+					{volist name="brand" id="vo"}
+						<li  class="{:$vo['id']==$cid?'cur':''}">
+							<a href="{:url('',['cid'=>$cid,'pid'=>$vo['id']])}">
 								<div class="img"><img src="{$vo['img']}"></div>
 								<div class="name">{$vo['name']}</div>
 							</a>
@@ -43,12 +43,13 @@
 			<div class="products_list">
 				<div class="title">
 					<h2>
-						{if(!empty($current_cate))}
+						{if(!empty($current_brand))/}
+							{$current_brand['name']}<span>{$current_brand['en']}</span>
+						{elseif(!empty($current_cate))}
 							{$current_cate['name']}<span>{$current_cate['en']}</span>
 						{else/}
 							全部产品
 						{/if}
-
 					</h2>
 					<div class="pro_search">
 						<form>

@@ -8,7 +8,7 @@
 			<h2>{$model['name']}</h2>
 			<p>{$model['desc']}</p>
 		</div>
-		<div class="img"><img src="{$model['img']}"></div>
+		<div class="img"><img src="{$model['det_img']}"></div>
 	</div>
 </div>
 
@@ -20,7 +20,7 @@
 		<div class="column clearfix wow fadeInUp">
 			<ul>
 				{volist name="cate['link_child']" id="vo"}
-				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url('',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
+				<li class="{:$vo['id']==$current_cate['id']?'cur':''}"><a href="{:url('product/index',['cid'=>$vo['id']])}">{$vo['name']}</a></li>
 				{/volist}
 			</ul>
 			<div class="bread_crumbs">
@@ -34,22 +34,24 @@
 		</div>
 	</div>
 	<div class="products_det w1200">
-		<div class="content">
-			{volist name="model['intro']" id="vo"}
-			<div class="title">{$vo['name']}</div>
-			<div class="text">
-				{if($vo['ipt_type']=='file')}
-					{if(!empty(\app\common\model\BaseModel::checkImg($vo['content'])))}
-						<img src="{$vo['content']}">
-					{else/}
-						<a href="{$vo['content']}" target="_blank">查看</a>
-					{/if}
-				{else/}
-					{$vo['content']}
-				{/if}
-			</div>
-			{/volist}
-
+		<div class="product_content wow fadeInUp">
+			{:htmlspecialchars_decode($model['content'])}
+		</div>
+		<div>
+			<br/>
+			<br/>
+		</div>
+		<div class="product_file wow fadeInUp">
+			<div class="title">附加文件</div>
+			<!--<div class="text">-->
+				<!--<img src="/assets/index/images/pro07.png">-->
+				<!--<a href="{$model['file']}" target="_blank">查看</a>-->
+			<!--</div>-->
+			{if(!empty($model['file']))}
+			<div class="button"><a href="javascript:;" class="opt-down" data-file="{$model['file']}"><img src="/assets/index/images/pro07.png"></a></div>
+			{else/}
+			没有附加文件
+			{/if}
 		</div>
 		<div class="related_products">
 			<div class="title"><h2>相关产品</h2></div>
@@ -66,15 +68,26 @@
 		</div>
 	</div>
 </div>
-{:widget('Component/footer',['act_menu'=>'product/index'])}
+{:widget('Component/footer')}
 {/block}
 
 {block name="script"}
+<script>
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		new WOW().init();
+	};
+</script>
 
-
-	<script>
-		if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
-			new WOW().init();
-		};
-	</script>
+<script>
+    $(function(){
+        $(".opt-down").click(function(){
+            var $this = $(this)
+            var file = $(this).data('file');
+            $.get("{:url('recordTimes')}",{id:$(this).data('id')},function(result){
+                $this.parent().prev().text($this.parent().prev().text()-0+1)
+                window.open(file);
+            })
+        })
+    })
+</script>
 {/block}

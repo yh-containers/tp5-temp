@@ -22,9 +22,9 @@
 	</div>
 	<div class="download w1200">
 		<div class="download_search">
-			<label>按产品型号搜索：</label>
+			<label>按资料名称搜索：</label>
 			<form>
-			<input type="search" name="keyword" value="{$keyword}" placeholder="搜索产品型号">
+			<input type="search" name="keyword" value="{$keyword}" placeholder="搜索资料名称">
 			</form>
 		</div>
 		<div class="title clearfix">
@@ -53,7 +53,7 @@
 		{$page|raw}
 	</div>
 </div>
-{:widget('Component/footer',['act_menu'=>'product/index'])}
+{:widget('Component/footer')}
 {/block}
 
 {block name="script"}

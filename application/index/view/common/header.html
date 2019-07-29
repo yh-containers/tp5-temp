@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header_nav w1200 clearfix">
-        <div class="logo"><img src="/assets/index/images/logo.png"></div>
+        <div class="logo"><a href="{:url('index/index')}"><img src="/assets/index/images/logo.png"></a></div>
         <ul id="nav" class="nav">
             <li class="nLi {:$act_menu=='index'?'on':''}"><a href="{:url('index/index')}">首页</a></li>
             {volist name="list" id="vo"}
@@ -11,7 +11,6 @@
             <a href="javascript:;"><img src="/assets/index/images/icon01.png"></a>
             <div class="search">
                 <form action="{:url('product/index')}" method="get">
-
                 <input type="text" class="ssk" name="keyword" value="{:empty($keyword)?'':$keyword}"  placeholder="请输入要搜索的产品">
                     <input type="submit" class="ss" value="">
                 </form>

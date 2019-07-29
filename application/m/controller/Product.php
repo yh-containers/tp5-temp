@@ -49,6 +49,7 @@ class Product extends Common
             return $query->where(['status'=>1]);
         }])->where([['pid','=',0],['status','=',1],['url','=','product/index']])->find();
         //当前分类
+        //dump($cate);die;
         $current_cate = null;
         foreach ($cate['link_child'] as $vo){
             if($model['cid']==$vo['id']){

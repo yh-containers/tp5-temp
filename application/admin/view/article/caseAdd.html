@@ -46,7 +46,12 @@
                     <input type="text" class="form-control" placeholder="来源" name="from" value="{$model['from']}">
                 </div>
             </div>
-
+            <div class="form-group">
+                <label class="col-sm-2 control-label">排序</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" placeholder="排序" name="sort" value="{:empty($model['sort'])?100:$model['sort']}">
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">状态</label>
                 <div class="col-sm-10">

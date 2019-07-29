@@ -41,13 +41,14 @@ class Article extends Common
     //方案详情
     public function solutionDetail()
     {
-        $id = $this->request->param('id');
+        $id = $this->request->param('id',0,'int');
 
         $model = \app\common\model\Solution::where(['status'=>1,'id'=>$id])->find();
         //分类信息
         $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
             return $query->where(['status'=>1]);
         }])->where([['pid','=',0],['status','=',1],['url','=','article/solution']])->find();
+
         //当前分类
         $current_cate = null;
         foreach ($cate['link_child'] as $vo){
@@ -106,7 +107,7 @@ class Article extends Common
     //案例详情
     public function casesDetail()
     {
-        $id = $this->request->param('id');
+        $id = $this->request->param('id',0,'int');
 
         $model = \app\common\model\Cases::where(['status'=>1,'id'=>$id])->find();
         //分类信息
@@ -251,7 +252,7 @@ class Article extends Common
     //新闻详情
     public function newsDetail()
     {
-        $id = $this->request->param('id');
+        $id = $this->request->param('id',0,'int');
 
         $model = \app\common\model\Article::where(['status'=>1,'id'=>$id])->find();
         //分类信息

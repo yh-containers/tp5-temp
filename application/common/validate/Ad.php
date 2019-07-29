@@ -7,11 +7,13 @@ class Ad extends Validate
 {
 
     protected $rule = [
-        'img'      =>  'require',
+        'img'         =>  'require',
+        'h5_img'      =>  'require',
     ];
 
     protected $message = [
-        'img.require'      => '图片必须上传',
+        'img.require'         => 'pc端图片必须上传',
+        'h5_img.require'      => '手机端图片必须上传',
     ];
 
 }

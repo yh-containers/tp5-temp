@@ -7,7 +7,6 @@ class Resource extends Common
     //资料下载
     public function index()
     {
-
         $keyword = $this->request->param('keyword','','trim');
         $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
             return $query->where(['status'=>1]);

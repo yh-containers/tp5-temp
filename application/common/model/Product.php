@@ -23,9 +23,15 @@ class Product extends BaseModel
         return empty($value)?[]:json_decode($value,true);
     }
 
-
+    //关联栏目
     public function linkCate()
     {
         return $this->belongsTo('Navigation','cid');
+    }
+
+    //关联品牌
+    public function linkBrand()
+    {
+        return $this->belongsTo('Brand','pid');
     }
 }

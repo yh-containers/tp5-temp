@@ -19,6 +19,7 @@ class Upload extends Common
         $save_path = '/uploads/'.$type.'/';
 //        !$open_dir_month && $save_path = $save_path.date('Yhm');
         // 移动到框架应用根目录/uploads/ 目录下
+//        dump($file);exit;
         $info = $file->move( $this->root_path.$save_path);
         if($info){
             // 成功上传后 获取上传信息

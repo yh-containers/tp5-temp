@@ -19,6 +19,7 @@
                             <th width="100">跳转地址</th>
                             <th width="120">更新日期</th>
                             <th width="60">状态</th>
+                            <th width="60">底部显示</th>
                             <th width="120">操作</th>
                         </tr>
                     </thead>
@@ -30,6 +31,7 @@
                             <td>{$vo['url']}</td>
                             <td>{$vo['update_time']}</td>
                             <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_status',$vo['status'])}</td>
+                            <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_bottom',$vo['bottom'])}</td>
                             <td>
                                 <a class="layui-btn layui-btn-sm" href="{:url('add',['id'=>$vo['id']])}">编辑</a>
                                 <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("del",["id"=>$vo["id"]])}')" class="ml-5">  删除</a>
@@ -43,6 +45,7 @@
                                 <td>{$child['url']}</td>
                                 <td>{$child['update_time']}</td>
                                 <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_status',$child['status'])}</td>
+                                <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_bottom',$child['bottom'])}</td>
                                 <td>
                                     <a class="layui-btn layui-btn-sm" href="{:url('add',['id'=>$child['id']])}">编辑</a>
                                     <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("del",["id"=>$child["id"]])}')" class="ml-5">  删除</a>
@@ -56,6 +59,7 @@
                                     <td>{$re_child['url']}</td>
                                     <td>{$re_child['update_time']}</td>
                                     <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_status',$re_child['status'])}</td>
+                                    <td>{:\\app\\common\\model\\Navigation::getPropInfo('fields_bottom',$re_child['bottom'])}</td>
                                     <td>
                                         <a class="layui-btn layui-btn-sm" href="{:url('add',['id'=>$re_child['id']])}">编辑</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-sm" href="javascript:;" onclick="$.common.waitConfirm('是否删除该条数据?','{:url("del",["id"=>$re_child["id"]])}')" class="ml-5">  删除</a>

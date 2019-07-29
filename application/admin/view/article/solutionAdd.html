@@ -43,6 +43,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">排序</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" placeholder="排序" name="sort" value="{:empty($model['sort'])?100:$model['sort']}">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">发布时间</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control datetime" placeholder="发布时间" name="show_time" value="{:empty($model['show_time'])?date('Y-m-d H:i:s'):$model['show_time']}" >

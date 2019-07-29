@@ -3,15 +3,36 @@ namespace app\admin\controller;
 
 class Product extends Common
 {
-
-    //
+    //产品列表
     public function index()
     {
-        $list = \app\common\model\Product::with(['linkCate'])->order('sort asc')->paginate();
+        //获取产品分类
+        $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
+            return $query->where(['status'=>1]);
+        }])->where([['pid','=',0],['status','=',1],['url','=','product/index']])->find();
+
+
+        //获取到搜索框中的
+        $keyword = $this->request->param('keyword','','trim');
+        $cid = $this->request->param('cid','0','trim');
+
+        //商品信息
+        $where[] = ['status','=',1];
+        !empty($keyword) && $where[] = ['name','like','%'.$keyword.'%'];
+        if($cid){
+            $where[] = ['cid','=',$cid];
+        }
+
+        $list = \app\common\model\Product::with(['linkCate','linkBrand'])->where($where)->order('sort asc')->paginate();
+        //dump($list);die;
         // 获取分页显示
         $page = $list->render();
         return view('index',[
-            'list' => $list,'page'=>$page
+            'cate'=> $cate,
+            'keyword'=>$keyword,
+            'list' => $list,
+            'page'=>$page,
+            'cid' => $cid,
         ]);
     }
 
@@ -48,9 +69,12 @@ class Product extends Common
         $model = $model->get($id);
         //获取产品分类
         $nav = \app\common\model\Navigation::where(['label'=>2,'status'=>1])->order('sort asc')->select();
+        //获取品牌分类
+        $brand = \app\common\model\Brand::where('status',1)->order('sort asc')->select();
         return view('add',[
             'model' => $model,
-            'nav' => $nav
+            'nav' => $nav,
+            'brand' => $brand,
         ]);
     }
 
@@ -59,6 +83,50 @@ class Product extends Common
     {
         $id = $this->request->param('id',0,'int');
         $model = new \app\common\model\Product();
+        return $model->actionDel(['id'=>$id]);
+    }
+
+    //品牌列表
+    public function brand()
+    {
+        $list = \app\common\model\Brand::with(['linkCate'])->order('sort asc')->paginate();
+        // 获取分页显示
+        $page = $list->render();
+        return view('brand',[
+            'list' => $list,'page'=>$page
+        ]);
+    }
+
+    // 新增/编辑
+    public function brandAdd()
+    {
+        $id = $this->request->param('id');
+        $model = new \app\common\model\Brand();
+
+        //表单提交
+        if($this->request->isAjax()){
+            //获取input框信息
+            $php_input = $this->request->param();
+            //获取验证信息
+            $validate = new \app\common\validate\Brand();
+            return $model->actionAdd($php_input,$validate);
+        }
+        //获取数据
+        $model = $model->get($id);
+        //获取产品分类
+        $nav = \app\common\model\Navigation::where(['label'=>2,'status'=>1])->order('sort asc')->select();
+        //dump($nav);die;
+        return view('brandAdd',[
+            'model' => $model,
+            'nav' => $nav
+        ]);
+    }
+
+    // 删除数据
+    public function brandDel()
+    {
+        $id = $this->request->param('id',0,'int');
+        $model = new \app\common\model\Brand();
         return $model->actionDel(['id'=>$id]);
     }
 }

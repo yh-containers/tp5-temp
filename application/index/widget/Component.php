@@ -26,9 +26,9 @@ class Component{
         //导航
         $list = \app\common\model\Navigation::with(['linkChild'=>function($query){
             return $query->where(['status'=>1]);
-        }])->where(['pid'=>0,'status'=>1])->order('sort', 'asc')->select();
+        }])->where(['pid'=>0,'status'=>1,'bottom'=>1])->order('sort', 'asc')->select();
         //合作伙伴
-        $partner = \app\common\model\Partner::where('status',1)->limit('4')->order('sort asc')->select();
+        $partner = \app\common\model\Partner::where('status',1)->order('sort asc')->select();
         return view('common/footer',[
             'list'=>$list,
             'partner'=>$partner,

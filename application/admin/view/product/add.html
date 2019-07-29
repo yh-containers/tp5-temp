@@ -2,7 +2,6 @@
 <!--高亮选中效果-->
 {block name="current_index"}product,product/index{/block}
 
-
 {block name="style"}
 <style>
     .intro-block .item{ position: relative; margin-bottom: 10px; }
@@ -23,17 +22,27 @@
                 <form id="form" action="" class="form-horizontal">
                     <input type="hidden" name="id" value="{$model['id']}"/>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">分类</label>
+                        <label class="col-sm-2 control-label">产品分类</label>
                         <div class="col-sm-10">
                             <select name="cid" class="form-control">
                                 <option value="">请选择分类</option>
                                 {volist name="nav" id="vo"}
-                                    <option value="{$vo['id']}"  {:$model['cid']==$vo['id']?'selected':''} >{$vo['name']}</option>
+                                    <option value="{$vo['id']}"  {:$model['cid']==$vo['id']?'selected':''}>{$vo['name']}</option>
                                 {/volist}
                             </select>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">品牌分类</label>
+                        <div class="col-sm-10">
+                            <select name="pid" class="form-control">
+                                <option value="">请选择分类</option>
+                                {volist name="brand" id="vo"}
+                                <option value="{$vo['id']}"  {:$model['pid']==$vo['id']?'selected':''} >{$vo['name']}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">名称</label>
                         <div class="col-sm-10">
@@ -42,13 +51,24 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">图片</label>
+                        <label class="col-sm-2 control-label">产品封面图片</label>
                         <div class="col-sm-10">
                             <input type="hidden" name="img" value="{$model['img']}" />
                             <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'product'])}', accept: 'images'}">
                                 <i class="layui-icon">&#xe67c;</i>图片
                             </button>
                             <img width="80" height="80" src="{$model['img']}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">产品详情图片</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" name="det_img" value="{$model['det_img']}" />
+                            <button type="button" class="layui-btn upload-img" lay-data="{ url: '{:url('upload/upload',['type'=>'product'])}', accept: 'images'}">
+                                <i class="layui-icon">&#xe67c;</i>图片
+                            </button>
+                            <img width="80" height="80" src="{$model['det_img']}" />
                         </div>
                     </div>
 
@@ -81,34 +101,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">产品说明</label>
-                        <div class="col-sm-10 intro-block">
-                            <button type="button"  class="btn  btn-info btn-add-intro" data-ipt_type="textarea">增加文本说明</button>
-                            <button type="button"  class="btn  btn-primary btn-add-intro" data-ipt_type="file">增加资源说明</button>
-                            {php}
-                                //产品说明
-                                $intro = empty($model['intro'])?\app\common\model\Product::$default_intro:$model['intro'];
-                            {/php}
-                            {volist name="intro" id="vo"}
-                            <div class="item">
-                                <i class="fa fa-fw fa-close"></i>
-                                <input type="text" class="form-control" name="intro[name][]" value="{$vo['name']}" placeholder="说明标题">
-                                <input type="hidden" class="form-control" name="intro[ipt_type][]" value="{$vo['ipt_type']}">
-                                {if($vo['ipt_type']=='file')}
-                                    <input type="hidden" name="intro[content][]" value="{$vo['content']}" />
-                                    <button type="button" class="layui-btn product-intro" lay-data="{ url: '{:url('upload/upload',['type'=>'product-intro'])}', accept: 'file'}">
-                                        <i class="layui-icon">&#xe67c;</i>{$vo['name']}文件
-                                    </button>
-                                    <a href="{:empty($vo['content'])?'##':$vo['content']}" target="_blank">{:empty($vo['content'])?'未上传':'立即查看'}</a>
-                                {else/}
-                                    <textarea name="intro[content][]"  rows="5" class="form-control" placeholder="说明内容">{$vo['content']}</textarea>
-                                {/if}
-                            </div>
-                            {/volist}
-
+                        <label class="col-sm-2 control-label">附带文件</label>
+                        <div class="col-sm-10">
+                        <input type="hidden" name="file" value="file" />
+                        <button type="button" class="layui-btn product-intro" lay-data="{ url: '{:url('upload/upload',['type'=>'product-file'])}', accept: 'file'}">
+                            <i class="layui-icon">&#xe67c;</i>文件
+                        </button>
+                        <a href="{:empty($model['file'])?'##':$model['file']}" target="_blank">{:empty($model['file'])?'未上传':'立即查看'}</a>
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">详细内容</label>
+                        <div class="col-sm-10">
+                            <!-- 加载编辑器的容器 -->
+                            <script id="container" name="content" type="text/plain">{:htmlspecialchars_decode($model['content'])}</script>
+                        </div>
+                    </div>
                 </form>
 
             </div>
@@ -123,72 +132,30 @@
 
 
 {block name="script"}
+<!-- 配置文件 -->
+<script type="text/javascript" src="/assets/ueditor1_4_3_3/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/assets/ueditor1_4_3_3/ueditor.all.js"></script>
+
 <script>
+    var ue = UE.getEditor('container');
     //引用上传组件
-    layui.use(['upload'],function(){
+    layui.use(['upload','laydate'],function(){
         var upload = layui.upload;
+        var laydate = layui.laydate;
         $.common.fileUpload(upload,'.upload-img')
-        $.common.fileUpload(upload,'#resource',(res,query_select)=>{
-            query_select.prev().val(res.path)
-            query_select.parent().find('a').attr('href',res.path).text('立即查看')
-        })
-
-
-
+        //执行一个laydate实例
+        laydate.render({
+            elem: '.datetime' //指定元素
+            ,type: 'datetime' //默认，可不填
+            ,max: 1
+        });
         $.common.fileUpload(upload,'.product-intro',(res,query_select)=>{
             query_select.prev().val(res.path)
-            query_select.parent().find('a').attr('href',res.path).text('立即查看')
-        })
-
-        //移除说明
-        $("#form").on('click','.product-intro-new',function(){
-
-
-
-        })
-        //移除说明
-        $("#form").on('click','.intro-block .fa',function(){
-            $(this).parent().remove();
-        })
-
-        //增加说明
-        var upload_intro_url = "{ url: '{:url('upload/upload',['type'=>'product-intro'])}', accept: 'file'}";
-        $(".btn-add-intro").click(function(){
-            var ipt_type = $(this).data('ipt_type')
-            var html = '<div class="item">\n' +
-                '    <i class="fa fa-fw fa-close"></i>\n' +
-                '    <input type="text" class="form-control" name="intro[name][]" placeholder="说明标题" value="">\n' +
-                '    <input type="hidden" class="form-control" name="intro[ipt_type][]" value="'+ipt_type+'">\n';
-
-            if(ipt_type==='file'){
-                html+= '    <input type="hidden" name="intro[content][]" value="" />\n' +
-                    '    <button type="button" class="layui-btn product-intro-new"  lay-data="'+upload_intro_url+'" >\n' +
-                    '        <i class="layui-icon">&#xe67c;</i>文件\n' +
-                    '    </button>\n'+
-                    '    <a href="#" target="_blank">未上传</a>\n';
-            }   else{
-                html+= '    <textarea name="intro[content][]"  rows="5" class="form-control" placeholder="说明内容"></textarea>\n';
-            }
-            html+='</div>';
-            //插入数据
-            $(".intro-block").append(html)
-            if(ipt_type==='file'){
-                picupload('.product-intro-new')
-            }
-        })
-
-
-        function picupload(id) {
-            $.common.fileUpload(upload,id,(res,query_select)=>{
-                query_select.prev().val(res.path)
-                query_select.parent().find('a').attr('href',res.path).text('立即查看')
-            })
-        }
+        query_select.parent().find('a').attr('href',res.path).text('立即查看')
     })
-    $(function(){
-
-
-
     })
 </script>
+
+
 {/block}

@@ -24,7 +24,6 @@ class Index extends Common
         }
         $case_list = \app\common\model\Cases::where(['status'=>1,'cid'=>$cate_ids])->order('sort asc')->limit(8)->select();
         $case_cate['link_case']= empty($case_list)?[]:$case_list;
-//        dump($case_cate);exit;
         //解决方案
         $solution_cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
             return $query->where(['status'=>1]);

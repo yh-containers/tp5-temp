@@ -17,9 +17,10 @@ class Components
             ]],
             ['name'=> '产品管理','icon'=>'fa fa-dashboard','index'=>'product','child'=>[
                 ['name'=>'产品列表','url'=>'product/index','index'=>'product/index','child'=>[]],
+                ['name'=>'品牌列表','url'=>'product/brand','index'=>'product/brand','child'=>[]],
             ]],
             ['name'=> '内容管理','icon'=>'fa fa-dashboard','index'=>'article','child'=>[
-                ['name'=>'文章列表','url'=>'article/index','index'=>'article/index','child'=>[]],
+                ['name'=>'新闻列表','url'=>'article/index','index'=>'article/index','child'=>[]],
                 ['name'=>'资源下载','url'=>'article/resource','index'=>'article/resource','child'=>[]],
                 ['name'=>'资质证书','url'=>'article/cert','index'=>'article/cert','child'=>[]],
                 ['name'=>'技术支持','url'=>'article/technology','index'=>'article/technology','child'=>[]],

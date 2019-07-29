@@ -183,7 +183,7 @@ class Article extends Common
     public function caseAdd()
     {
 
-        $id = $this->request->param('id');
+        $id = $this->request->param('id',0,'int');
         $model = new \app\common\model\Cases();
 
         //表单提交

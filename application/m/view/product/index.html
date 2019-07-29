@@ -4,7 +4,7 @@
 {:widget('Component/header',['act_menu'=>'product/index'])}
 
     <div class="nybanner">
-        <p><img src="{$cate['img']}"></p>
+        <p><img src="{$cate['h5_img']}"></p>
     </div>
     
     <div class="main">
@@ -13,7 +13,7 @@
             <p>PRODUCT CENTER</p>
         </div>
         <div class="inside_sort">
-            <select onchange="s_click(this)">
+            <select onchange="changePage(this)">
                 {volist name="cate['link_child']" id='vo'}
                 <option  value="{$vo['id']}" {:$vo['id']==$current_cate['id']?'selected':''}>{$vo['name']}</option>
                 {/volist}
@@ -56,5 +56,9 @@
 {/block}
 
 {block name="script"}
-
+<script>
+    function changePage(obj){
+        location.href="{:url('product/index')}?cid="+$(obj).val()
+    }
+</script>
 {/block}

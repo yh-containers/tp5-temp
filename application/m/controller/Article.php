@@ -13,6 +13,7 @@ class Article extends Common
         $cate = \app\common\model\Navigation::with(['linkChild'=>function($query){
             return $query->where(['status'=>1]);
         }])->where([['pid','=',0],['status','=',1],['url','=','article/solution']])->find();
+        //dump($cate);die;
         if(empty($cid) && count($cate['link_child'])>0){
             $cid = $cate['link_child'][0]['id'];
         }

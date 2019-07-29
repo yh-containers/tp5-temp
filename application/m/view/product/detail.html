@@ -2,7 +2,7 @@
 {block name="content"}
 {:widget('Component/header',['act_menu'=>'index'])}
     <div class="nybanner">
-        <p><img src="{$cate['img']}"></p>
+        <p><img src="{$cate['h5_img']}"></p>
     </div>
     
     <div class="main">
@@ -65,7 +65,7 @@
 {block name="script"}
 <script>
     function changePage(obj){
-        location.href="{:url('article/solution')}?cid="+$(obj).val()
+        location.href="{:url('product/index')}?cid="+$(obj).val()
     }
 </script>
 {/block}

@@ -7,6 +7,7 @@ use think\Validate;
 class BaseModel extends Model
 {
     public static $fields_status = ['--','正常','关闭'];
+
     //状态
     public static function getPropInfo($propOrFunc,$key=null,$field=null)
     {
